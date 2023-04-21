@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fashion_seller_hub/Screen/Product_Detils.dart';
 import 'package:fashion_seller_hub/helper/variable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -204,66 +205,96 @@ class _Home_ScreenState extends State<Home_Screen> {
                       return Padding(
                         padding: EdgeInsets.symmetric(
                             horizontal: 10.sp, vertical: 10.sp),
-                        child: Card(
-                          child: Comman_Container(
-                            height: 140.sp,
-                            width: 120.sp,
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: 10.sp, horizontal: 10.sp),
-                                  child: Comman_Container(
-                                    height: 140.sp,
-                                    width: 120.sp,
-                                    image: DecorationImage(
-                                      image: NetworkImage(data["image"]),
-                                      fit: BoxFit.cover,
+                        child: InkWell(
+                          onTap: () {
+                            Get.to(ProductDetilsScreen(
+                              image: data['image'],
+                              category: data["product_catagory"],
+                              details: data["product_details"],
+                              name: data["product_name"],
+                              price: data["product_price"],
+                              stock: data["product_stock"],
+                            ));
+                          },
+                          child: Card(
+                            child: Comman_Container(
+                              height: 140.sp,
+                              width: 120.sp,
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        vertical: 10.sp, horizontal: 10.sp),
+                                    child: Comman_Container(
+                                      height: 140.sp,
+                                      width: 120.sp,
+                                      image: DecorationImage(
+                                        image: NetworkImage(data["image"]),
+                                        fit: BoxFit.cover,
+                                      ),
                                     ),
                                   ),
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    SizedBox(
-                                      height: 10.sp,
-                                    ),
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Comman_Text(
-                                            text: "Product Name:",
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      SizedBox(
+                                        height: 10.sp,
+                                      ),
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Comman_Text(
+                                              text: "Product Name:",
+                                              color: Vx.black,
+                                              fontSize: 12.sp,
+                                              fontFamily: "JB1",
+                                              fontWeight: FontWeight.bold),
+                                          Comman_Text(
+                                            text: "${data["product_name"]}",
+                                            color: grey,
+                                            fontSize: 12.sp,
+                                            fontFamily: "JM1",
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ],
+                                      ),
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Comman_Text(
+                                            text: "Product Categaroy:",
                                             color: Vx.black,
-                                            fontSize: 15.sp,
-                                            fontWeight: FontWeight.bold),
-                                        Comman_Text(
-                                          text: "${data["product_name"]}",
-                                          color: Vx.black,
-                                          fontSize: 15.sp,
-                                        ),
-                                      ],
-                                    ),
-                                    Comman_Text(
-                                      text: "Product Categaroy:",
-                                      color: Vx.black,
-                                      fontSize: 15.sp,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                    Comman_Text(
-                                      text: "Product Price:",
-                                      color: Vx.black,
-                                      fontSize: 15.sp,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ],
-                                )
-                              ],
+                                            fontSize: 12.sp,
+                                            fontFamily: "JB1",
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                          Comman_Text(
+                                            text: "${data["product_catagory"]}",
+                                            color: grey,
+                                            fontSize: 12.sp,
+                                            fontFamily: "JM1",
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ],
+                                      ),
+                                      Comman_Text(
+                                        text: "Product Price:",
+                                        color: Vx.black,
+                                        fontSize: 15.sp,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              ),
                             ),
+                            elevation: 5,
+                            color: Colors.grey.shade200,
                           ),
-                          elevation: 5,
-                          color: Colors.grey.shade200,
                         ),
                       );
                     },
