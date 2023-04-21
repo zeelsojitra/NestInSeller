@@ -12,3 +12,4 @@ const SplashAppLogowhite = "assets/logo/app_white.png";
 
 //lottie image
 const String Apple_lottie = "assets/lottie/apple.json";
+//heij,;

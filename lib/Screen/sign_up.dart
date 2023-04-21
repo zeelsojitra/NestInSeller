@@ -29,6 +29,7 @@ class _Sign_UpState extends State<Sign_Up> with SingleTickerProviderStateMixin {
     "Sign Up",
     "Sign In",
   ];
+  bool passwordcheck = true;
 
   @override
   void initState() {
@@ -110,7 +111,17 @@ class _Sign_UpState extends State<Sign_Up> with SingleTickerProviderStateMixin {
             ),
             Comman_TexxtFiled(
               controller: Password_controler,
-              obscureText: true,
+              obscureText: passwordcheck,
+              sufficicon: IconButton(
+                onPressed: () {
+                  setState(() {
+                    passwordcheck = !passwordcheck;
+                  });
+                },
+                icon: passwordcheck
+                    ? Icon(Icons.visibility_off)
+                    : Icon(Icons.visibility),
+              ),
               hinttext: "Enter password",
               validator: (value) {
                 final bool passwordValid = RegExp(

@@ -21,6 +21,7 @@ class _Sign_InState extends State<Sign_In> {
 
   final Email_controler = TextEditingController();
   final Password_controler = TextEditingController();
+  bool passwordcheck = true;
   int selected = 0;
   bool isLoding = false;
   List name = [
@@ -69,8 +70,18 @@ class _Sign_InState extends State<Sign_In> {
               ),
               Comman_TexxtFiled(
                 controller: Password_controler,
-                obscureText: true,
+                obscureText: passwordcheck,
                 hinttext: "Enter password",
+                sufficicon: IconButton(
+                  onPressed: () {
+                    setState(() {
+                      passwordcheck = !passwordcheck;
+                    });
+                  },
+                  icon: passwordcheck
+                      ? Icon(Icons.visibility_off)
+                      : Icon(Icons.visibility),
+                ),
                 validator: (value) {
                   final bool passwordValid = RegExp(
                           r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$')
