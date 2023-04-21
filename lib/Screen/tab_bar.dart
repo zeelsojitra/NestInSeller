@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fashion_seller_hub/Screen/Home_Screen.dart';
 import 'package:fashion_seller_hub/Screen/sign_in.dart';
 import 'package:fashion_seller_hub/Screen/sign_up.dart';
 
@@ -13,6 +12,7 @@ import '../Common_screen/Comman_text.dart';
 import '../common_screen/Comman_Container.dart';
 import '../google auth service/google_auth_service.dart';
 import 'Splash_Screen.dart';
+import 'homeScreen.dart';
 
 class Tab_Bar extends StatefulWidget {
   const Tab_Bar({Key? key}) : super(key: key);

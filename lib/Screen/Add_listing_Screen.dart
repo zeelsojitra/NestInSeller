@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fashion_seller_hub/Screen/Home_Screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +10,7 @@ import 'package:sizer/sizer.dart';
 import '../Common_screen/Comman_Container.dart';
 import '../Common_screen/Comman_TeextFiled.dart';
 import '../getx/controller.dart';
+import 'homeScreen.dart';
 
 class Add_Product extends StatefulWidget {
   const Add_Product({Key? key}) : super(key: key);

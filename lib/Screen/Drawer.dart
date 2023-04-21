@@ -8,11 +8,11 @@ import 'package:sizer/sizer.dart';
 
 import '../Common_screen/Comman_text.dart';
 import 'Help_screen.dart';
-import 'Home_Screen.dart';
 import 'My_product_Screen.dart';
 import 'Payment_Screen.dart';
 import 'Send_feedback.dart';
 import 'Splash_Screen.dart';
+import 'homeScreen.dart';
 
 class DrawerScreen extends StatefulWidget {
   const DrawerScreen({Key? key}) : super(key: key);
