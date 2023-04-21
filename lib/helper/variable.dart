@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:sizer/sizer.dart';
 
 //color
 const Color DarkGreen2 = Color(0xff2D6A4F);
@@ -54,3 +55,48 @@ AppBar coomanAppBar({String? name, List<Widget>? action, bool? centerTitle}) {
     backgroundColor: DarkGreen2,
   );
 }
+
+//drawer screen
+List drawer = [
+  {
+    "name": "Home",
+    "icon": Icon(Icons.home_outlined, color: Color(0xff74C69D), size: 22.sp),
+  },
+  {
+    "name": "My Product",
+    "icon": Icon(Icons.shopping_cart_outlined,
+        color: Color(0xff74C69D), size: 22.sp),
+  },
+  {
+    "name": "Order",
+    "icon": Icon(Icons.add_box_outlined, color: Color(0xff74C69D), size: 22.sp),
+  },
+  {
+    "name": "Payments",
+    "icon": Icon(Icons.currency_rupee, color: Color(0xff74C69D), size: 22.sp),
+  },
+  {
+    "name": "Send Feedback",
+    "icon":
+        Icon(Icons.feedback_outlined, color: Color(0xff74C69D), size: 22.sp),
+  },
+  {
+    "name": "Contect Us",
+    "icon": Icon(Icons.contact_support_outlined,
+        color: Color(0xff74C69D), size: 22.sp),
+  },
+  {
+    "name": "About Us",
+    "icon":
+        Icon(Icons.feedback_outlined, color: Color(0xff74C69D), size: 22.sp),
+  },
+  {
+    "name": "Help",
+    "icon":
+        Icon(Icons.help_center_outlined, color: Color(0xff74C69D), size: 22.sp),
+  },
+  {
+    "name": "Logout",
+    "icon": Icon(Icons.logout, color: Color(0xff74C69D), size: 22.sp),
+  },
+];
