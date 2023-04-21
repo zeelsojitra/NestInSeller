@@ -46,9 +46,15 @@ const text_logo = "asserts/logo/text_logo.png";
 const String Apple_lottie = "assets/lottie/apple.json";
 
 //appbar
-AppBar coomanAppBar({String? name, List<Widget>? action, bool? centerTitle}) {
+AppBar coomanAppBar({
+  String? name,
+  List<Widget>? action,
+  bool? centerTitle,
+}) {
   return AppBar(
-    title: Text("${name}"),
+    title: Text(
+      "${name}",
+    ),
     centerTitle: centerTitle,
     titleTextStyle: TextStyle(fontFamily: "JS1", fontSize: Get.height * 0.022),
     actions: action,

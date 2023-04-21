@@ -7,10 +7,12 @@ class Comman_Text extends StatelessWidget {
       this.color,
       this.fontSize,
       this.fontWeight,
-      this.decoration})
+      this.decoration,
+      this.fontFamily})
       : super(key: key);
 
   final text;
+  final String? fontFamily;
   final color;
   final decoration;
   final double? fontSize;
@@ -24,6 +26,7 @@ class Comman_Text extends StatelessWidget {
         decoration: decoration,
         color: color,
         fontSize: fontSize,
+        fontFamily: fontFamily,
         fontWeight: fontWeight,
       ),
     );
