@@ -174,49 +174,29 @@ class _Tab_BarState extends State<Tab_Bar> with SingleTickerProviderStateMixin {
                 // ),
                 GestureDetector(
                   onTap: () {
-                    showDialog(
-                      context: context,
-                      builder: (context) {
-                        return LodingDiloge(
-                          message: "",
-                        );
-                      },
-                    );
-
                     GoogleAuthService.signInWithGoogle().then((value) async {
                       if (value != null) {
-                        Get.back();
-                        Get.off(Home_Screen());
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Home_Screen(),
+                            ));
                         FirebaseFirestore.instance
-                            .collection("user")
+                            .collection("Seller")
                             .doc(FirebaseAuth.instance.currentUser!.uid)
                             .set({
                           "profile_image": profile_image,
                           "profile_name": profile_name,
                           "profile_email": profile_email,
-                          "favourite": [],
-                          "buyNow": [],
-                          "add to cart": [],
-                          "User_id": FirebaseAuth.instance.currentUser!.uid,
+                          "Seller_id": FirebaseAuth.instance.currentUser!.uid,
                         });
-                        SharedPreferences sharedPreferences =
+                        SharedPreferences sh =
                             await SharedPreferences.getInstance();
-                        await sharedPreferences.setBool(
-                            Splash_ScreenState.KeyValue, true);
-                        await sharedPreferences!
-                            .setString("profile_image", profile_image!);
-                        await sharedPreferences!
-                            .setString("profile_name", profile_name!);
-                        await sharedPreferences!
-                            .setString("profile_email", profile_email!);
+                        sh.setBool(Splash_ScreenState.KeyValue, true);
                       } else {
-                        Get.back();
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                             content: Text(
-                                "Email is already in use by another accoount"),
-                          ),
-                        );
+                                "Email is already in use by another accoount")));
                       }
                     });
                   },
