@@ -1,5 +1,6 @@
 import 'package:fashion_seller_hub/Screen/Order_Screen.dart';
 import 'package:fashion_seller_hub/Screen/tab_bar.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
@@ -7,12 +8,16 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
 
 import '../Common_screen/Comman_text.dart';
+import '../Common_screen/shardpefrence.dart';
+import '../email authantication/EmailAuthService.dart';
+import '../google auth service/google_auth_service.dart';
 import 'Help_screen.dart';
 import 'My_product_Screen.dart';
 import 'Payment_Screen.dart';
 import 'Send_feedback.dart';
 import 'Splash_Screen.dart';
 import 'homeScreen.dart';
+import 'login_screen_h.dart';
 
 class DrawerScreen extends StatefulWidget {
   const DrawerScreen({Key? key}) : super(key: key);
@@ -125,13 +130,6 @@ class _DrawerScreenState extends State<DrawerScreen> {
                               builder: (context) => Home_Screen(),
                             ),
                           );
-                        } else if (index == 1) {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => My_Product_Screen(),
-                            ),
-                          );
                         } else if (index == 2) {
                           Get.to(Order_screen());
                         } else if (index == 3) {
@@ -158,16 +156,54 @@ class _DrawerScreenState extends State<DrawerScreen> {
                             ),
                           );
                         } else if (index == 8) {
-                          SharedPreferences sh =
-                              await SharedPreferences.getInstance();
-                          sh.setBool(Splash_ScreenState.KeyValue, false).then(
-                                (value) => Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => Tab_Bar(),
-                                  ),
-                                ),
-                              );
+                          showDialog(
+                              barrierDismissible: false,
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  title: const Text("Logout"),
+                                  content: const Text(
+                                      "Are you sure you want to logout?"),
+                                  actions: [
+                                    IconButton(
+                                      onPressed: () {
+                                        Get.back();
+                                      },
+                                      icon: const Icon(
+                                        Icons.cancel,
+                                        color: Colors.red,
+                                      ),
+                                    ),
+                                    IconButton(
+                                      icon: const Icon(
+                                        Icons.done,
+                                        color: Colors.green,
+                                      ),
+                                      onPressed: () async {
+                                        FirebaseAuth.instance.signOut();
+                                        EmailAuthService.LogoutUser()
+                                            .then((value) async {
+                                          SharedPreferences sh =
+                                              await SharedPreferences
+                                                  .getInstance();
+                                          sh.setBool(
+                                              Splash_ScreenState.KeyValue,
+                                              false);
+                                          GoogleAuthService.googleSignOut();
+                                          sh.remove("email").then(
+                                              (value) => Get.off(Tab_Bar()));
+                                        });
+                                        sharedPreferences!
+                                            .remove("profile_email");
+                                        sharedPreferences!
+                                            .remove("profile_image");
+                                        sharedPreferences!
+                                            .remove("profile_name");
+                                      },
+                                    ),
+                                  ],
+                                );
+                              });
                         }
                       },
                       child: Container(

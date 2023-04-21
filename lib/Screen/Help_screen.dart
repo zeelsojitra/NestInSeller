@@ -1,3 +1,4 @@
+import 'package:fashion_seller_hub/helper/variable.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
@@ -12,11 +13,8 @@ class _Help_ScreenState extends State<Help_Screen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xff40916C),
-        title: Text(
-          "Listing Helps",
-        ),
+      appBar: coomanAppBar(
+        name: "Listing Helps",
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),

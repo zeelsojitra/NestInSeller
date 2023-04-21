@@ -1,3 +1,4 @@
+import 'package:fashion_seller_hub/helper/variable.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
@@ -17,7 +18,9 @@ class _Send_Feedback_screenState extends State<Send_Feedback_screen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xff40916C),
-        title: Text("Send Feedback"),
+        title: coomanAppBar(
+          name: "Send Feedback",
+        ),
         elevation: 0,
       ),
       body: Padding(

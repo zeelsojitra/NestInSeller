@@ -60,25 +60,8 @@ class _Home_ScreenState extends State<Home_Screen> {
           icon: Icon(Icons.add, size: 29),
         ),
       ),
-      appBar: AppBar(
-        elevation: 0,
-        actions: [
-          // this button is used to open the search modal
-        ],
-        backgroundColor: Color(
-          0xff40916C,
-        ),
-        title: Text("Fashion Seller Hub",
-            style: TextStyle(
-              color: Colors.white,
-            )),
-        leading: Builder(builder: (BuildContext context) {
-          return IconButton(
-              onPressed: () {
-                Scaffold.of(context).openDrawer();
-              },
-              icon: Icon(Icons.menu));
-        }),
+      appBar: coomanAppBar(
+        name: "Fashion Seller Hub",
       ),
       drawer: DrawerScreen(),
       body: Column(

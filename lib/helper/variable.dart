@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 //color
 const Color DarkGreen2 = Color(0xff2D6A4F);
@@ -41,3 +43,14 @@ const text_logo = "asserts/logo/text_logo.png";
 
 //lottie image
 const String Apple_lottie = "assets/lottie/apple.json";
+
+//appbar
+AppBar coomanAppBar({String? name, List<Widget>? action, bool? centerTitle}) {
+  return AppBar(
+    title: Text("${name}"),
+    centerTitle: centerTitle,
+    titleTextStyle: TextStyle(fontFamily: "JS1", fontSize: Get.height * 0.022),
+    actions: action,
+    backgroundColor: DarkGreen2,
+  );
+}

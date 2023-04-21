@@ -10,6 +10,7 @@ import 'package:sizer/sizer.dart';
 import '../Common_screen/Comman_Container.dart';
 import '../Common_screen/Comman_TeextFiled.dart';
 import '../getx/controller.dart';
+import '../helper/variable.dart';
 import 'homeScreen.dart';
 
 class Add_Product extends StatefulWidget {
@@ -148,18 +149,8 @@ class _Add_ProductState extends State<Add_Product> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Color(0xff40916C),
-        leading: InkResponse(
-          child: Icon(Icons.arrow_back),
-          onTap: () {
-            Navigator.pop(context);
-          },
-        ),
-        title: Text(
-          "Add Product",
-        ),
+      appBar: coomanAppBar(
+        name: "Add Product",
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),

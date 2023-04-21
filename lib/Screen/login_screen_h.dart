@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fashion_seller_hub/Screen/homeScreen.dart';
 import 'package:fashion_seller_hub/Screen/sign_in.dart';
 import 'package:fashion_seller_hub/Screen/sign_up.dart';
 
@@ -16,15 +17,14 @@ import '../common_screen/Comman_text.dart';
 import '../google auth service/google_auth_service.dart';
 import 'Splash_Screen.dart';
 
-class LoginScreenH extends StatefulWidget {
-  const LoginScreenH({Key? key}) : super(key: key);
+class Tab_Bar extends StatefulWidget {
+  const Tab_Bar({Key? key}) : super(key: key);
 
   @override
-  State<LoginScreenH> createState() => _LoginScreenHState();
+  State<Tab_Bar> createState() => _Tab_BarState();
 }
 
-class _LoginScreenHState extends State<LoginScreenH>
-    with SingleTickerProviderStateMixin {
+class _Tab_BarState extends State<Tab_Bar> with SingleTickerProviderStateMixin {
   TabController? tabController;
   final gloablekey = GlobalKey<FormState>();
   final Email_controler = TextEditingController();
@@ -186,7 +186,7 @@ class _LoginScreenHState extends State<LoginScreenH>
                     GoogleAuthService.signInWithGoogle().then((value) async {
                       if (value != null) {
                         Get.back();
-                        //Get.off(Bottom_navigation());
+                        Get.off(Home_Screen());
                         FirebaseFirestore.instance
                             .collection("user")
                             .doc(FirebaseAuth.instance.currentUser!.uid)
@@ -237,7 +237,7 @@ class _LoginScreenHState extends State<LoginScreenH>
                     width: 38.sp,
                     child: Center(
                       child: Lottie.asset(
-                        'asserts/lottie/google.json',
+                        'assets/lottie/google.json',
                         height: 27.sp,
                         width: 27.sp,
                       ),
