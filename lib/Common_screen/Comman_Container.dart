@@ -14,6 +14,7 @@ class Comman_Container extends StatelessWidget {
     this.BoxShadow,
     this.ontap,
     this.margin,
+    this.alignment,
   }) : super(key: key);
 
   final width;
@@ -22,6 +23,8 @@ class Comman_Container extends StatelessWidget {
   final EdgeInsetsGeometry? margin;
   final Gradient? gradient;
   final color;
+  final AlignmentGeometry? alignment;
+
   final DecorationImage? image;
   final BoxBorder? border;
   final BorderRadiusGeometry? BorderRadius;
@@ -35,6 +38,7 @@ class Comman_Container extends StatelessWidget {
         width: width,
         margin: margin,
         height: height,
+        alignment: alignment,
         child: child,
         decoration: BoxDecoration(
           gradient: gradient,

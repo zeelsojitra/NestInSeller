@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fashion_seller_hub/Screen/Home_Screen.dart';
-import 'package:fashion_seller_hub/helper/variable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -111,7 +110,7 @@ class _Add_ProductState extends State<Add_Product> {
   //     ],
   //   },
   // ];
-  DateTime date = DateTime.now();
+
   File? image;
   bool isLoding = false;
   Controller pi = Get.put(Controller());
@@ -316,8 +315,6 @@ class _Add_ProductState extends State<Add_Product> {
                           .doc();
                       docRef
                           .set({
-                            "createdDate":
-                                "${date.day}-${date.month}-${date.year}",
                             "image": imageUrlseller ?? '',
                             "product_name": "${product_name.text}",
                             "product_catagory": "${catagoeryValue}",
@@ -337,14 +334,14 @@ class _Add_ProductState extends State<Add_Product> {
                     height: 40.sp,
                     width: 120.sp,
                     decoration: BoxDecoration(
-                        color: DarkGreen,
+                        color: Color(0xff95D5B2),
                         borderRadius: BorderRadius.circular(20),
                         border: Border.all(color: Colors.black12, width: 1)),
                     child: Center(
                         child: Text(
                       "Add",
                       style: TextStyle(
-                          color: black,
+                          color: Colors.black,
                           fontWeight: FontWeight.bold,
                           fontSize: 16.sp),
                     )),

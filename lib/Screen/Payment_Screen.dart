@@ -1,3 +1,4 @@
+import 'package:fashion_seller_hub/helper/variable.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
@@ -13,17 +14,8 @@ class _Payment_ScreenState extends State<Payment_Screen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey.shade200,
-      appBar: AppBar(
-        backgroundColor: Color(0xff40916C),
-        title: Text(
-          "Payments",
-        ),
-        actions: [
-          Icon(Icons.notifications),
-          SizedBox(
-            width: 10.sp,
-          )
-        ],
+      appBar: coomanAppBar(
+        name: "Payments",
       ),
       body: SingleChildScrollView(
         child: Padding(

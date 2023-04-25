@@ -18,6 +18,9 @@ class Comman_TexxtFiled extends StatelessWidget {
     this.sufficicon,
     this.filled,
     this.validator,
+    this.hintStyle,
+    this.maxLines,
+    this.labelStyle,
   }) : super(key: key);
   final void Function()? ontap;
   final void Function(String)? onChanged;
@@ -28,8 +31,11 @@ class Comman_TexxtFiled extends StatelessWidget {
   final TextInputType? keyboardType;
   final TextEditingController? controller;
   final hinttext;
+  final hintStyle;
   final labletext;
   final counter;
+  final labelStyle;
+  final maxLines;
   final fillcolor;
   final prefixicon;
   final sufficicon;
@@ -40,10 +46,14 @@ class Comman_TexxtFiled extends StatelessWidget {
     return TextFormField(
       validator: validator,
       onTap: ontap,
+      style: TextStyle(
+        fontFamily: "JM1",
+      ),
       keyboardType: keyboardType,
       controller: controller,
       maxLength: maxLength,
       obscureText: obscureText,
+      maxLines: maxLines,
       onChanged: onChanged,
       decoration: InputDecoration(
         disabledBorder: OutlineInputBorder(
@@ -63,7 +73,9 @@ class Comman_TexxtFiled extends StatelessWidget {
         ),
         border: border,
         hintText: hinttext,
+        hintStyle: hintStyle,
         labelText: labletext,
+        labelStyle: labelStyle,
         counter: counter,
         filled: filled,
         suffixIcon: sufficicon,

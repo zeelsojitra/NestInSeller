@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:fashion_seller_hub/Screen/Home_Screen.dart';
 import 'package:fashion_seller_hub/Screen/tab_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,6 +8,8 @@ import 'package:sizer/sizer.dart';
 import '../Common_screen/Comman_Container.dart';
 import '../Common_screen/Comman_text.dart';
 import '../helper/variable.dart';
+import 'homeScreen.dart';
+import 'login_screen_h.dart';
 
 class Splash_Screen extends StatefulWidget {
   const Splash_Screen({Key? key}) : super(key: key);
@@ -65,43 +66,42 @@ class Splash_ScreenState extends State<Splash_Screen> {
           Comman_Container(
             height: Get.height,
             width: Get.width,
-            gradient: LinearGradient(colors: [
-              Color(0xff2D6A4F),
-              Color(0xff95D5B2),
-            ]),
+            color: black,
+            // gradient: LinearGradient(colors: [
+            //   LightGreen,
+            //   DarkGreen2,
+            // ]),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Center(
-                  child: Image(
-                    height: 100.sp,
-                    width: 100.sp,
-                    image: AssetImage(SplashAppLogowhite),
-                  ),
+                Image(
+                  height: Get.height * 0.55,
+                  width: Get.width * 0.55,
+                  image: AssetImage(splash_mainLogo),
                 ),
-                SizedBox(
-                  height: 7.sp,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    // Comman_Text(
-                    //   text: "Nest",
-                    //   color: Colors.black,
-                    //   fontSize: 30.sp,
-                    //   fontWeight: FontWeight.bold,
-                    // ),
-                    // SizedBox(
-                    //   width: 5.sp,
-                    // ),
-                    Comman_Text(
-                      text: "Seller App ",
-                      color: Colors.black,
-                      fontSize: 30.sp,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ],
-                ),
+                // SizedBox(
+                //   height: 7.sp,
+                // ),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.center,
+                //   children: [
+                //     Comman_Text(
+                //       text: "Nest",
+                //       color: white,
+                //       fontSize: 30.sp,
+                //       fontWeight: FontWeight.bold,
+                //     ),
+                //     // SizedBox(
+                //     //   width: 5.sp,
+                //     // ),
+                //     Comman_Text(
+                //       text: "In",
+                //       color: white,
+                //       fontSize: 30.sp,
+                //       fontWeight: FontWeight.bold,
+                //     ),
+                //   ],
+                // ),
               ],
             ),
           ),

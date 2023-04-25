@@ -1,3 +1,4 @@
+import 'package:fashion_seller_hub/helper/variable.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
@@ -15,11 +16,7 @@ class _Send_Feedback_screenState extends State<Send_Feedback_screen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xff40916C),
-        title: Text("Send Feedback"),
-        elevation: 0,
-      ),
+      appBar: coomanAppBar(name: "Send Feedback"),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
         child: Form(

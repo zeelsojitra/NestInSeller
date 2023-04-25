@@ -1,4 +1,3 @@
-import 'package:fashion_seller_hub/Screen/Home_Screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +6,7 @@ import '../Common_screen/Comman_TeextFiled.dart';
 import '../Common_screen/Comman_text.dart';
 import '../email authantication/EmailAuthService.dart';
 import 'Splash_Screen.dart';
+import 'homeScreen.dart';
 
 class Sign_In extends StatefulWidget {
   const Sign_In({Key? key}) : super(key: key);

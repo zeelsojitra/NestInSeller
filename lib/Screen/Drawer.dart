@@ -1,5 +1,7 @@
+import 'package:email_launcher/email_launcher.dart';
 import 'package:fashion_seller_hub/Screen/Order_Screen.dart';
 import 'package:fashion_seller_hub/Screen/tab_bar.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
@@ -7,12 +9,16 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
 
 import '../Common_screen/Comman_text.dart';
+import '../Common_screen/shardpefrence.dart';
+import '../email authantication/EmailAuthService.dart';
+import '../google auth service/google_auth_service.dart';
 import 'Help_screen.dart';
-import 'Home_Screen.dart';
 import 'My_product_Screen.dart';
 import 'Payment_Screen.dart';
 import 'Send_feedback.dart';
 import 'Splash_Screen.dart';
+import 'homeScreen.dart';
+import 'login_screen_h.dart';
 
 class DrawerScreen extends StatefulWidget {
   const DrawerScreen({Key? key}) : super(key: key);
@@ -28,14 +34,9 @@ class _DrawerScreenState extends State<DrawerScreen> {
       "icon": Icon(Icons.home_outlined, color: Color(0xff74C69D), size: 22.sp),
     },
     {
-      "name": "My Product",
+      "name": "Order",
       "icon": Icon(Icons.shopping_cart_outlined,
           color: Color(0xff74C69D), size: 22.sp),
-    },
-    {
-      "name": "Order",
-      "icon":
-          Icon(Icons.add_box_outlined, color: Color(0xff74C69D), size: 22.sp),
     },
     {
       "name": "Payments",
@@ -48,8 +49,11 @@ class _DrawerScreenState extends State<DrawerScreen> {
     },
     {
       "name": "Contect Us",
-      "icon": Icon(Icons.contact_support_outlined,
-          color: Color(0xff74C69D), size: 22.sp),
+      "icon": Icon(
+        Icons.contact_support_outlined,
+        color: Color(0xff74C69D),
+        size: 22.sp,
+      ),
     },
     {
       "name": "About Us",
@@ -126,48 +130,85 @@ class _DrawerScreenState extends State<DrawerScreen> {
                             ),
                           );
                         } else if (index == 1) {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => My_Product_Screen(),
-                            ),
-                          );
-                        } else if (index == 2) {
                           Get.to(Order_screen());
-                        } else if (index == 3) {
+                        } else if (index == 2) {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (context) => Payment_Screen(),
                             ),
                           );
-                        } else if (index == 4) {
+                        } else if (index == 3) {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (context) => Send_Feedback_screen(),
                             ),
                           );
+                        } else if (index == 4) {
+                          Email email = Email(
+                            to: ['nestinecommerce@gmail.com'],
+                          );
+                          await EmailLauncher.launch(email);
                         } else if (index == 5) {
                         } else if (index == 6) {
-                        } else if (index == 7) {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (context) => Help_Screen(),
                             ),
                           );
-                        } else if (index == 8) {
-                          SharedPreferences sh =
-                              await SharedPreferences.getInstance();
-                          sh.setBool(Splash_ScreenState.KeyValue, false).then(
-                                (value) => Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => Tab_Bar(),
-                                  ),
-                                ),
-                              );
+                        } else if (index == 7) {
+                          showDialog(
+                              barrierDismissible: false,
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  title: Text("Logout",
+                                      style: TextStyle(
+                                          fontSize: 20.sp, fontFamily: "JB1")),
+                                  content: Text(
+                                      "Are you sure you want to logout?",
+                                      style: TextStyle(
+                                          fontSize: 15.sp, fontFamily: "JV1")),
+                                  actions: [
+                                    InkWell(
+                                      onTap: () {
+                                        Get.back();
+                                      },
+                                      child: Icon(Icons.cancel_outlined,
+                                          color: Colors.red),
+                                    ),
+                                    IconButton(
+                                      icon: const Icon(
+                                        Icons.done,
+                                        color: Colors.green,
+                                      ),
+                                      onPressed: () async {
+                                        FirebaseAuth.instance.signOut();
+                                        EmailAuthService.LogoutUser()
+                                            .then((value) async {
+                                          SharedPreferences sh =
+                                              await SharedPreferences
+                                                  .getInstance();
+                                          sh.setBool(
+                                              Splash_ScreenState.KeyValue,
+                                              false);
+                                          GoogleAuthService.googleSignOut();
+                                          sh.remove("email").then(
+                                              (value) => Get.off(Tab_Bar()));
+                                        });
+                                        sharedPreferences!
+                                            .remove("profile_email");
+                                        sharedPreferences!
+                                            .remove("profile_image");
+                                        sharedPreferences!
+                                            .remove("profile_name");
+                                      },
+                                    ),
+                                  ],
+                                );
+                              });
                         }
                       },
                       child: Container(
