@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart';
 
 class Comman_Text extends StatelessWidget {
-  const Comman_Text(
-      {Key? key,
-      this.text,
-      this.color,
-      this.fontSize,
-      this.fontWeight,
-      this.decoration,
-      this.fontFamily})
-      : super(key: key);
+  const Comman_Text({
+    Key? key,
+    this.text,
+    this.color,
+    this.fontSize,
+    this.fontWeight,
+    this.decoration,
+    this.fontFamily,
+    this.maxLines,
+    this.overflow,
+  }) : super(key: key);
 
   final text;
   final String? fontFamily;
   final color;
+  final maxLines;
   final decoration;
+  final overflow;
   final double? fontSize;
   final FontWeight? fontWeight;
 
@@ -22,6 +26,8 @@ class Comman_Text extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
+      overflow: overflow,
+      maxLines: maxLines,
       style: TextStyle(
         decoration: decoration,
         color: color,

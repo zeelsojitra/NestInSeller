@@ -1,3 +1,4 @@
+import 'package:email_launcher/email_launcher.dart';
 import 'package:fashion_seller_hub/Screen/Order_Screen.dart';
 import 'package:fashion_seller_hub/Screen/tab_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -33,14 +34,9 @@ class _DrawerScreenState extends State<DrawerScreen> {
       "icon": Icon(Icons.home_outlined, color: Color(0xff74C69D), size: 22.sp),
     },
     {
-      "name": "My Product",
+      "name": "Order",
       "icon": Icon(Icons.shopping_cart_outlined,
           color: Color(0xff74C69D), size: 22.sp),
-    },
-    {
-      "name": "Order",
-      "icon":
-          Icon(Icons.add_box_outlined, color: Color(0xff74C69D), size: 22.sp),
     },
     {
       "name": "Payments",
@@ -53,8 +49,11 @@ class _DrawerScreenState extends State<DrawerScreen> {
     },
     {
       "name": "Contect Us",
-      "icon": Icon(Icons.contact_support_outlined,
-          color: Color(0xff74C69D), size: 22.sp),
+      "icon": Icon(
+        Icons.contact_support_outlined,
+        color: Color(0xff74C69D),
+        size: 22.sp,
+      ),
     },
     {
       "name": "About Us",
@@ -130,49 +129,55 @@ class _DrawerScreenState extends State<DrawerScreen> {
                               builder: (context) => Home_Screen(),
                             ),
                           );
-                        } else if (index == 2) {
+                        } else if (index == 1) {
                           Get.to(Order_screen());
-                        } else if (index == 3) {
+                        } else if (index == 2) {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (context) => Payment_Screen(),
                             ),
                           );
-                        } else if (index == 4) {
+                        } else if (index == 3) {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (context) => Send_Feedback_screen(),
                             ),
                           );
+                        } else if (index == 4) {
+                          Email email = Email(
+                            to: ['nestinecommerce@gmail.com'],
+                          );
+                          await EmailLauncher.launch(email);
                         } else if (index == 5) {
                         } else if (index == 6) {
-                        } else if (index == 7) {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (context) => Help_Screen(),
                             ),
                           );
-                        } else if (index == 8) {
+                        } else if (index == 7) {
                           showDialog(
                               barrierDismissible: false,
                               context: context,
                               builder: (context) {
                                 return AlertDialog(
-                                  title: const Text("Logout"),
-                                  content: const Text(
-                                      "Are you sure you want to logout?"),
+                                  title: Text("Logout",
+                                      style: TextStyle(
+                                          fontSize: 20.sp, fontFamily: "JB1")),
+                                  content: Text(
+                                      "Are you sure you want to logout?",
+                                      style: TextStyle(
+                                          fontSize: 15.sp, fontFamily: "JV1")),
                                   actions: [
-                                    IconButton(
-                                      onPressed: () {
+                                    InkWell(
+                                      onTap: () {
                                         Get.back();
                                       },
-                                      icon: const Icon(
-                                        Icons.cancel,
-                                        color: Colors.red,
-                                      ),
+                                      child: Icon(Icons.cancel_outlined,
+                                          color: Colors.red),
                                     ),
                                     IconButton(
                                       icon: const Icon(
