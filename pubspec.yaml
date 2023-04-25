@@ -46,6 +46,7 @@ dependencies:
   firebase_core: ^2.4.1
   firebase_auth: ^4.2.5
   firebase_storage: ^11.0.10
+  fancy_drawer: ^2.0.0
   lottie: ^2.2.0
   get: ^4.6.5
   google_sign_in: ^5.4.3
