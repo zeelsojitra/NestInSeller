@@ -6,6 +6,7 @@ class Controller extends GetxController {
   RxBool like_btn_details_screen = false.obs;
   int onchange = 0;
   RxInt selected_Screen = 0.obs;
+  RxBool signuploder = false.obs;
 
   setSelectScreen(int value) {
     onchange = value;

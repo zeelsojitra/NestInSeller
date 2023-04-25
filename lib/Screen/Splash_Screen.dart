@@ -77,7 +77,7 @@ class Splash_ScreenState extends State<Splash_Screen> {
                 Image(
                   height: Get.height * 0.55,
                   width: Get.width * 0.55,
-                  image: AssetImage(splash_mainLogo),
+                  image: AssetImage(logo_green),
                 ),
                 // SizedBox(
                 //   height: 7.sp,

@@ -1,12 +1,18 @@
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
 import 'package:flutter/material.dart';
 import '../Common_screen/Comman_Container.dart';
 import '../Common_screen/Comman_TeextFiled.dart';
 import '../Common_screen/Comman_text.dart';
+
+import '../common_screen/loding.dart';
 import '../email authantication/EmailAuthService.dart';
+
+import '../helper/variable.dart';
+import 'Home_Screen.dart';
 import 'Splash_Screen.dart';
-import 'homeScreen.dart';
 
 class Sign_In extends StatefulWidget {
   const Sign_In({Key? key}) : super(key: key);
@@ -18,7 +24,7 @@ class Sign_In extends StatefulWidget {
 class _Sign_InState extends State<Sign_In> {
   String countryCode = "91";
   String countryFlage = "";
-
+  final usernamecontroler = TextEditingController();
   final Email_controler = TextEditingController();
   final Password_controler = TextEditingController();
   bool passwordcheck = true;
@@ -32,7 +38,6 @@ class _Sign_InState extends State<Sign_In> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      physics: NeverScrollableScrollPhysics(),
       child: Form(
         key: gloablekey,
         child: Padding(
@@ -44,12 +49,42 @@ class _Sign_InState extends State<Sign_In> {
                 height: 17.sp,
               ),
               Comman_TexxtFiled(
+                filled: true,
+                fillcolor: Colors.grey.shade200,
+                controller: usernamecontroler,
+                hinttext: "Enter Name",
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Enter Name";
+                  }
+                },
+                onChanged: (value) {
+                  setState(() {
+                    gloablekey.currentState!.validate();
+                  });
+                },
+                sufficicon: usernamecontroler.text.length > 2
+                    ? Icon(
+                        Icons.check_circle,
+                        color: Colors.black,
+                      )
+                    : SizedBox(),
+                prefixicon: Icon(
+                  Icons.person_outlined,
+                  size: 20.sp,
+                  color: Colors.grey,
+                ),
+              ),
+              SizedBox(
+                height: 15.sp,
+              ),
+              Comman_TexxtFiled(
+                filled: true,
+                fillcolor: Colors.grey.shade200,
                 controller: Email_controler,
                 hinttext: "Enter Email",
                 validator: (value) {
-                  final bool emailValid = RegExp(
-                          r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                      .hasMatch(value!);
+                  final bool emailValid = email.hasMatch(value!);
                   if (emailValid) {
                     return null;
                   } else {
@@ -69,9 +104,10 @@ class _Sign_InState extends State<Sign_In> {
                 height: 15.sp,
               ),
               Comman_TexxtFiled(
+                filled: true,
+                fillcolor: Colors.grey.shade200,
                 controller: Password_controler,
                 obscureText: passwordcheck,
-                hinttext: "Enter password",
                 sufficicon: IconButton(
                   onPressed: () {
                     setState(() {
@@ -82,10 +118,9 @@ class _Sign_InState extends State<Sign_In> {
                       ? Icon(Icons.visibility_off)
                       : Icon(Icons.visibility),
                 ),
+                hinttext: "Enter password",
                 validator: (value) {
-                  final bool passwordValid = RegExp(
-                          r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$')
-                      .hasMatch(value!);
+                  final bool passwordValid = password.hasMatch(value!);
 
                   if (value.isEmpty) {
                     return "Enter Password";
@@ -107,6 +142,7 @@ class _Sign_InState extends State<Sign_In> {
               ),
               Center(
                 child: Comman_Container(
+                  BorderRadius: BorderRadius.circular(40),
                   ontap: () {
                     print("hello");
                     setState(() {
@@ -123,11 +159,7 @@ class _Sign_InState extends State<Sign_In> {
                             sh
                                 .setBool(Splash_ScreenState.KeyValue, true)
                                 .whenComplete(
-                                  () => Navigator.pushReplacement(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => Home_Screen(),
-                                      )),
+                                  () => Get.off(Home_Screen()),
                                 );
                           } else {
                             setState(() {
@@ -144,7 +176,7 @@ class _Sign_InState extends State<Sign_In> {
                   },
                   height: 35.sp,
                   width: 140.sp,
-                  color: Color(0xff95D5B2),
+                  color: LightGreen,
                   child: Center(
                     child: Comman_Text(
                       text: "Sign In",
