@@ -190,19 +190,32 @@ class _Add_ProductState extends State<Add_Product> {
                       return "Please Enter Name";
                     }
                   },
-                  hinttext: "Enter Product Name",
+                  labletext: "Enter Product Name",
+                  labelStyle: TextStyle(
+                    fontSize: 15.sp,
+                    color: Colors.grey.shade600,
+                  ),
+                  hintStyle: TextStyle(
+                    fontFamily: "JM1",
+                  ),
                 ),
                 SizedBox(
-                  height: 10.sp,
+                  height: 15.sp,
                 ),
                 Comman_TexxtFiled(
+                  maxLength: 200,
                   controller: product_details,
                   validator: (p0) {
                     if (p0!.isEmpty) {
                       return "Please Enter Details";
                     }
                   },
-                  hinttext: "Enter Product Details",
+                  labletext: "Enter Product Details",
+                  labelStyle: TextStyle(
+                    fontSize: 15.sp,
+                    color: Colors.grey.shade600,
+                  ),
+                  hintStyle: TextStyle(fontFamily: "JM1"),
                 ),
                 SizedBox(
                   height: 10.sp,
@@ -271,10 +284,15 @@ class _Add_ProductState extends State<Add_Product> {
                     }
                   },
                   keyboardType: TextInputType.number,
-                  hinttext: "Enter Product Price",
+                  labletext: "Enter Product Price",
+                  labelStyle: TextStyle(
+                    fontSize: 15.sp,
+                    color: Colors.grey.shade600,
+                  ),
+                  hintStyle: TextStyle(fontFamily: "JM1"),
                 ),
                 SizedBox(
-                  height: 10.sp,
+                  height: 15.sp,
                 ),
                 Comman_TexxtFiled(
                   controller: product_stock,
@@ -284,7 +302,12 @@ class _Add_ProductState extends State<Add_Product> {
                     }
                   },
                   keyboardType: TextInputType.number,
-                  hinttext: "Enter Product Stock",
+                  labletext: "Enter Product Stock",
+                  labelStyle: TextStyle(
+                    fontSize: 15.sp,
+                    color: Colors.grey.shade600,
+                  ),
+                  hintStyle: TextStyle(fontFamily: "JM1"),
                 ),
                 SizedBox(
                   height: 10.sp,
