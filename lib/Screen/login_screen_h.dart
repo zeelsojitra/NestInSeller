@@ -12,6 +12,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
 
 import '../Common_screen/loding.dart';
+import '../Common_screen/shardpefrence.dart';
 import '../common_screen/Comman_Container.dart';
 import '../common_screen/Comman_text.dart';
 import '../google auth service/google_auth_service.dart';
@@ -55,7 +56,6 @@ class _Tab_BarState extends State<Tab_Bar> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        physics: NeverScrollableScrollPhysics(),
         child: Column(
           children: [
             SizedBox(height: Get.height * 0.055),
@@ -193,6 +193,13 @@ class _Tab_BarState extends State<Tab_Bar> with SingleTickerProviderStateMixin {
                         SharedPreferences sh =
                             await SharedPreferences.getInstance();
                         sh.setBool(Splash_ScreenState.KeyValue, true);
+                        await sharedPreferences!
+                            .setString("profile_image", profile_image!);
+                        await sharedPreferences!
+                            .setString("profile_name", profile_name!);
+                        await sharedPreferences!
+                            .setString("profile_email", profile_email!);
+                        print("showe email${profile_email}");
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                             content: Text(

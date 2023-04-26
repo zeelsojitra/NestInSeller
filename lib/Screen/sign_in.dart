@@ -38,6 +38,7 @@ class _Sign_InState extends State<Sign_In> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+      physics: NeverScrollableScrollPhysics(),
       child: Form(
         key: gloablekey,
         child: Padding(
@@ -103,11 +104,45 @@ class _Sign_InState extends State<Sign_In> {
               SizedBox(
                 height: 15.sp,
               ),
+              // Comman_TexxtFiled(
+              //   filled: true,
+              //   fillcolor: Colors.grey.shade200,
+              //   controller: Password_controler,
+              //   obscureText: passwordcheck,
+              //   sufficicon: IconButton(
+              //     onPressed: () {
+              //       setState(() {
+              //         passwordcheck = !passwordcheck;
+              //       });
+              //     },
+              //     icon: passwordcheck
+              //         ? Icon(Icons.visibility_off)
+              //         : Icon(Icons.visibility),
+              //   ),
+              //   hinttext: "Enter password",
+              //   validator: (value) {
+              //     final bool passwordValid = password.hasMatch(value!);
+              //
+              //     if (value.isEmpty) {
+              //       return "Enter Password";
+              //     } else if (passwordValid != true) {
+              //       return "please enter valid password";
+              //     }
+              //   },
+              //   onChanged: (value) {
+              //     gloablekey.currentState!.validate();
+              //   },
+              //   prefixicon: Icon(
+              //     Icons.lock,
+              //     size: 20.sp,
+              //     color: Colors.grey,
+              //   ),
+              // ),
               Comman_TexxtFiled(
                 filled: true,
                 fillcolor: Colors.grey.shade200,
                 controller: Password_controler,
-                obscureText: passwordcheck,
+                //obscureText: passwordcheck,
                 sufficicon: IconButton(
                   onPressed: () {
                     setState(() {

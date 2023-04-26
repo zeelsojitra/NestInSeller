@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -7,9 +6,7 @@ import 'package:sizer/sizer.dart';
 import '../Common_screen/Comman_Container.dart';
 import '../Common_screen/Comman_TeextFiled.dart';
 import '../Common_screen/Comman_text.dart';
-
 import '../email authantication/EmailAuthService.dart';
-
 import '../helper/variable.dart';
 
 class Sign_Up extends StatefulWidget {
@@ -46,6 +43,7 @@ class _Sign_UpState extends State<Sign_Up> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+      physics: NeverScrollableScrollPhysics(),
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 10.sp),
         child: Form(
@@ -122,7 +120,7 @@ class _Sign_UpState extends State<Sign_Up> with SingleTickerProviderStateMixin {
                 filled: true,
                 fillcolor: Colors.grey.shade200,
                 controller: Password_controler,
-                obscureText: passwordcheck,
+                //obscureText: passwordcheck,
                 sufficicon: IconButton(
                   onPressed: () {
                     setState(() {
