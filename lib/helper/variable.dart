@@ -107,3 +107,8 @@ List drawer = [
     "icon": Icon(Icons.logout, color: Color(0xff74C69D), size: 22.sp),
   },
 ];
+//RegExp
+RegExp email = RegExp(
+    r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+RegExp password =
+    RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');

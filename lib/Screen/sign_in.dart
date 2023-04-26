@@ -5,6 +5,7 @@ import '../Common_screen/Comman_Container.dart';
 import '../Common_screen/Comman_TeextFiled.dart';
 import '../Common_screen/Comman_text.dart';
 import '../email authantication/EmailAuthService.dart';
+import '../helper/variable.dart';
 import 'Splash_Screen.dart';
 import 'homeScreen.dart';
 
@@ -23,6 +24,7 @@ class _Sign_InState extends State<Sign_In> {
   final Password_controler = TextEditingController();
   int selected = 0;
   bool isLoding = false;
+  bool passwordcheck = true;
   List name = [
     'Sign Up',
     'Sign In',
@@ -67,14 +69,9 @@ class _Sign_InState extends State<Sign_In> {
               SizedBox(
                 height: 15.sp,
               ),
-              Comman_TexxtFiled(
-                controller: Password_controler,
-                obscureText: true,
-                hinttext: "Enter password",
+              TextFormField(
                 validator: (value) {
-                  final bool passwordValid = RegExp(
-                          r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$')
-                      .hasMatch(value!);
+                  final bool passwordValid = password.hasMatch(value!);
 
                   if (value.isEmpty) {
                     return "Enter Password";
@@ -82,13 +79,41 @@ class _Sign_InState extends State<Sign_In> {
                     return "please enter valid password";
                   }
                 },
-                onChanged: (value) {
-                  gloablekey.currentState!.validate();
-                },
-                prefixicon: Icon(
-                  Icons.lock,
-                  size: 20.sp,
-                  color: Colors.grey,
+                onChanged: (value) {},
+                controller: Password_controler,
+                obscureText: passwordcheck,
+                decoration: InputDecoration(
+                  disabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  errorBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  focusedErrorBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  hintText: "Enter password",
+                  suffixIcon: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        passwordcheck = !passwordcheck;
+                      });
+                    },
+                    icon: passwordcheck
+                        ? Icon(Icons.visibility_off)
+                        : Icon(Icons.visibility),
+                  ),
+                  prefixIcon: Icon(
+                    Icons.lock,
+                    size: 20.sp,
+                    color: Colors.grey,
+                  ),
                 ),
               ),
               SizedBox(
