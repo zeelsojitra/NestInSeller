@@ -16,6 +16,7 @@ import '../common_screen/Comman_Container.dart';
 import '../common_screen/Comman_text.dart';
 import '../google auth service/google_auth_service.dart';
 import 'Splash_Screen.dart';
+import 'fancy_drawer.dart';
 
 class Tab_Bar extends StatefulWidget {
   const Tab_Bar({Key? key}) : super(key: key);
@@ -179,7 +180,7 @@ class _Tab_BarState extends State<Tab_Bar> with SingleTickerProviderStateMixin {
                         Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => Home_Screen(),
+                              builder: (context) => HomeScreen1(),
                             ));
                         FirebaseFirestore.instance
                             .collection("Seller")

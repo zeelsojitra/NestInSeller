@@ -8,6 +8,7 @@ import 'package:sizer/sizer.dart';
 import '../Common_screen/Comman_Container.dart';
 import '../Common_screen/Comman_text.dart';
 import '../helper/variable.dart';
+import 'fancy_drawer.dart';
 import 'homeScreen.dart';
 import 'login_screen_h.dart';
 
@@ -29,7 +30,7 @@ class Splash_ScreenState extends State<Splash_Screen> {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) => Home_Screen(),
+              builder: (context) => HomeScreen1(),
             ),
           );
         } else {
