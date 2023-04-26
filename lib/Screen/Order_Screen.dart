@@ -415,9 +415,15 @@ class _Order_screenState extends State<Order_screen>
                             },
                           ),
                         )
-                      : Center(
-                          child: Image.asset(
-                              "assets/images/Online shopping-pana.png"));
+                      : Expanded(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                  "assets/images/Online shopping-pana.png"),
+                            ],
+                          ),
+                        );
                 }),
           ],
         ),

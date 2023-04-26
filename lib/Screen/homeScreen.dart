@@ -335,11 +335,12 @@ class _Home_ScreenState extends State<Home_Screen> {
                       )
                     : Expanded(
                         child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Image.asset(
                               "assets/images/EcommercePorductAddi.png",
-                              height: 350,
-                              width: 350,
+                              height: Get.height * 0.35,
+                              width: Get.width,
                             ),
                           ],
                         ),
