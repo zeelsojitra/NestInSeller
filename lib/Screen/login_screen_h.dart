@@ -206,6 +206,9 @@ class _Tab_BarState extends State<Tab_Bar> with SingleTickerProviderStateMixin {
                             content: Text(
                                 "Email is already in use by another accoount")));
                       }
+                      print("User Name1: ${profile_image}");
+                      print("User photo1 ${profile_name}");
+                      print("User Email1 ${profile_email}");
                     });
                   },
                   child: Container(

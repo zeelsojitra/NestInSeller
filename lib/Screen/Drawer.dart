@@ -71,8 +71,32 @@ class _DrawerScreenState extends State<DrawerScreen> {
       "icon": Icon(Icons.logout, color: Color(0xff74C69D), size: 22.sp),
     },
   ];
+  String? useremail, username;
+  final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+
+  Future<void> getUserEmail() async {
+    final SharedPreferences prefs = await _prefs;
+
+    final email = prefs.getString("profile_email");
+    final name = prefs.getString("profile_name");
+
+    useremail = email;
+    username = name;
+
+    setState(() {});
+    print("userapp name${username}");
+    print("userapp name${useremail}");
+  }
+
+  @override
+  void initState() {
+    getUserEmail();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
+    print("nameeee${username}");
     return Drawer(
       backgroundColor: Color(0xfff0f0f0),
       child: Column(
@@ -88,22 +112,23 @@ class _DrawerScreenState extends State<DrawerScreen> {
                         borderRadius: BorderRadius.only(
                             bottomRight: Radius.circular(140))),
                     accountName: Comman_Text(
-                      text: sharedPreferences!.getString("profile_name")!,
+                      text: "${username}",
                       color: white,
                       fontSize: 16.sp,
                     ),
-                    accountEmail:
-                        Comman_Text(text: "+91 123 456 7890", fontSize: 14.sp),
-                    currentAccountPicture: InkWell(
-                      child: Container(
-                        height: 170.sp,
-                        width: 170.sp,
-                        decoration: BoxDecoration(
-                          color: Colors.grey.shade300,
-                          shape: BoxShape.circle,
-                        ),
-                        child: ClipOval(),
-                      ),
+                    accountEmail: Comman_Text(
+                      text: "${useremail}",
+                      color: white,
+                      fontSize: 16.sp,
+                    ),
+                    currentAccountPicture: CircleAvatar(
+                      backgroundColor: Colors.white,
+                      child: Comman_Text(
+                          color: DarkGreen2,
+                          fontFamily: "JS1",
+                          fontWeight: FontWeight.bold,
+                          fontSize: Get.height * 0.03,
+                          text: "${username}".split("").first),
                     ),
                   )),
               Positioned(

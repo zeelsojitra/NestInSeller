@@ -163,6 +163,7 @@ class _Sign_UpState extends State<Sign_Up> with SingleTickerProviderStateMixin {
               ),
               Center(
                 child: Comman_Container(
+                  BorderRadius: BorderRadius.circular(40),
                   ontap: () {
                     print("hello");
                     if (gloablekey.currentState!.validate()) {
