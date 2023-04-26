@@ -190,9 +190,17 @@ class _Tab_BarState extends State<Tab_Bar> with SingleTickerProviderStateMixin {
                           "profile_email": profile_email,
                           "Seller_id": FirebaseAuth.instance.currentUser!.uid,
                         });
-                        SharedPreferences sh =
+
+                        SharedPreferences sharedPreferences =
                             await SharedPreferences.getInstance();
-                        sh.setBool(Splash_ScreenState.KeyValue, true);
+                        await sharedPreferences.setBool(
+                            Splash_ScreenState.KeyValue, true);
+                        await sharedPreferences!
+                            .setString("profile_image", profile_image!);
+                        await sharedPreferences!
+                            .setString("profile_name", profile_name!);
+                        await sharedPreferences!
+                            .setString("profile_email", profile_email!);
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                             content: Text(

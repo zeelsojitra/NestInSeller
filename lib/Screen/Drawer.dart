@@ -12,6 +12,7 @@ import '../Common_screen/Comman_text.dart';
 import '../Common_screen/shardpefrence.dart';
 import '../email authantication/EmailAuthService.dart';
 import '../google auth service/google_auth_service.dart';
+import '../helper/variable.dart';
 import 'Help_screen.dart';
 import 'My_product_Screen.dart';
 import 'Payment_Screen.dart';
@@ -86,8 +87,11 @@ class _DrawerScreenState extends State<DrawerScreen> {
                             colors: [Color(0xff2D6A4F), Color(0xff95D5B2)]),
                         borderRadius: BorderRadius.only(
                             bottomRight: Radius.circular(140))),
-                    accountName:
-                        Comman_Text(text: "Oleh Chabanov", fontSize: 18.sp),
+                    accountName: Comman_Text(
+                      text: sharedPreferences!.getString("profile_name")!,
+                      color: white,
+                      fontSize: 16.sp,
+                    ),
                     accountEmail:
                         Comman_Text(text: "+91 123 456 7890", fontSize: 14.sp),
                     currentAccountPicture: InkWell(
