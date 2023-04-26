@@ -333,10 +333,16 @@ class _Home_ScreenState extends State<Home_Screen> {
                           },
                         ),
                       )
-                    : Image.asset(
-                        "assets/images/EcommercePorductAddi.png",
-                        height: 350,
-                        width: 350,
+                    : Expanded(
+                        child: Column(
+                          children: [
+                            Image.asset(
+                              "assets/images/EcommercePorductAddi.png",
+                              height: 350,
+                              width: 350,
+                            ),
+                          ],
+                        ),
                       );
               },
             ),
