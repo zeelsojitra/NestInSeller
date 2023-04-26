@@ -42,6 +42,7 @@ const logo_green = "assets/logo/splash_main.png";
 const main_logo = "assets/logo/main_logo.png";
 const splash_mainLogo = "assets/logo/splash_main.png";
 const text_logo = "assets/logo/text_logo.png";
+const empty_order = "assets/images/Online shopping-pana.png";
 
 //lottie image
 const String Apple_lottie = "assets/lottie/apple.json";
