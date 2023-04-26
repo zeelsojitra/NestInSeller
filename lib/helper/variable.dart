@@ -69,11 +69,11 @@ List drawer = [
     "name": "Home",
     "icon": Icon(Icons.home_outlined, color: Color(0xff74C69D), size: 22.sp),
   },
-  {
-    "name": "My Product",
-    "icon": Icon(Icons.shopping_cart_outlined,
-        color: Color(0xff74C69D), size: 22.sp),
-  },
+  // {
+  //   "name": "My Product",
+  //   "icon": Icon(Icons.shopping_cart_outlined,
+  //       color: Color(0xff74C69D), size: 22.sp),
+  // },
   {
     "name": "Order",
     "icon": Icon(Icons.add_box_outlined, color: Color(0xff74C69D), size: 22.sp),
