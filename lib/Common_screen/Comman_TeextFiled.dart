@@ -7,7 +7,6 @@ class Comman_TexxtFiled extends StatelessWidget {
     this.onChanged,
     this.maxLength,
     this.border,
-    this.obscureText = false,
     this.keyboardType,
     this.controller,
     this.hinttext,
@@ -27,7 +26,7 @@ class Comman_TexxtFiled extends StatelessWidget {
   final maxLength;
   final InputBorder? border;
   final String? Function(String?)? validator;
-  final bool obscureText;
+
   final TextInputType? keyboardType;
   final TextEditingController? controller;
   final hinttext;
@@ -38,7 +37,7 @@ class Comman_TexxtFiled extends StatelessWidget {
   final maxLines;
   final fillcolor;
   final prefixicon;
-  final sufficicon;
+  final Widget? sufficicon;
   final bool? filled;
 
   @override
@@ -52,7 +51,6 @@ class Comman_TexxtFiled extends StatelessWidget {
       keyboardType: keyboardType,
       controller: controller,
       maxLength: maxLength,
-      obscureText: obscureText,
       maxLines: maxLines,
       onChanged: onChanged,
       decoration: InputDecoration(
