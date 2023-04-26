@@ -1,3 +1,4 @@
+import 'package:fashion_seller_hub/Screen/fancy_drawer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
 import 'package:flutter/material.dart';
@@ -141,7 +142,7 @@ class _Sign_InState extends State<Sign_In> {
                                   () => Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => Home_Screen(),
+                                        builder: (context) => HomeScreen1(),
                                       )),
                                 );
                           } else {

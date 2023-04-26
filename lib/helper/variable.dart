@@ -41,7 +41,7 @@ const SplashAppLogowhite = "assets/logo/app_white.png";
 const logo_green = "assets/logo/splash_main.png";
 const main_logo = "assets/logo/main_logo.png";
 const splash_mainLogo = "assets/logo/splash_main.png";
-const text_logo = "asserts/logo/text_logo.png";
+const text_logo = "assets/logo/text_logo.png";
 
 //lottie image
 const String Apple_lottie = "assets/lottie/apple.json";
@@ -69,11 +69,11 @@ List drawer = [
     "name": "Home",
     "icon": Icon(Icons.home_outlined, color: Color(0xff74C69D), size: 22.sp),
   },
-  {
-    "name": "My Product",
-    "icon": Icon(Icons.shopping_cart_outlined,
-        color: Color(0xff74C69D), size: 22.sp),
-  },
+  // {
+  //   "name": "My Product",
+  //   "icon": Icon(Icons.shopping_cart_outlined,
+  //       color: Color(0xff74C69D), size: 22.sp),
+  // },
   {
     "name": "Order",
     "icon": Icon(Icons.add_box_outlined, color: Color(0xff74C69D), size: 22.sp),
