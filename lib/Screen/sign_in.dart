@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import '../Common_screen/Comman_Container.dart';
 import '../Common_screen/Comman_TeextFiled.dart';
 import '../Common_screen/Comman_text.dart';
+import '../Common_screen/shardpefrence.dart';
 import '../email authantication/EmailAuthService.dart';
 import '../helper/variable.dart';
 import 'Splash_Screen.dart';
@@ -23,6 +24,7 @@ class _Sign_InState extends State<Sign_In> {
 
   final Email_controler = TextEditingController();
   final Password_controler = TextEditingController();
+  final usernamecontroler = TextEditingController();
   int selected = 0;
   bool isLoding = false;
   bool passwordcheck = true;
@@ -44,6 +46,36 @@ class _Sign_InState extends State<Sign_In> {
             children: [
               SizedBox(
                 height: 17.sp,
+              ),
+              Comman_TexxtFiled(
+                filled: true,
+                fillcolor: Colors.grey.shade200,
+                controller: usernamecontroler,
+                hinttext: "Enter Name",
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Enter Name";
+                  }
+                },
+                onChanged: (value) {
+                  setState(() {
+                    gloablekey.currentState!.validate();
+                  });
+                },
+                sufficicon: usernamecontroler.text.length > 2
+                    ? Icon(
+                        Icons.check_circle,
+                        color: Colors.black,
+                      )
+                    : SizedBox(),
+                prefixicon: Icon(
+                  Icons.person_outlined,
+                  size: 20.sp,
+                  color: Colors.grey,
+                ),
+              ),
+              SizedBox(
+                height: 15.sp,
               ),
               Comman_TexxtFiled(
                 controller: Email_controler,
@@ -127,6 +159,9 @@ class _Sign_InState extends State<Sign_In> {
                     print("hello");
                     setState(() {
                       if (gloablekey.currentState!.validate()) {
+                        String? name, email;
+                        name = usernamecontroler.text;
+                        email = Email_controler.text;
                         EmailAuthService.LoginUser(
                                 password: Password_controler.text,
                                 email: Email_controler.text)
@@ -145,6 +180,10 @@ class _Sign_InState extends State<Sign_In> {
                                         builder: (context) => HomeScreen1(),
                                       )),
                                 );
+                            await sharedPreferences!
+                                .setString("profile_email", email!);
+                            await sharedPreferences!
+                                .setString("profile_name", name!);
                           } else {
                             setState(() {
                               isLoding = false;

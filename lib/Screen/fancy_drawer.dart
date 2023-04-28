@@ -94,12 +94,12 @@ class _HomeScreen1State extends State<HomeScreen1>
                             LinearGradient(colors: [DarkGreen2, LightGreen]),
                         borderRadius: BorderRadius.circular(17)),
                     accountName: Comman_Text(
-                      text: "${username}",
+                      text: sharedPreferences!.getString("profile_name"),
                       color: white,
                       fontSize: 16.sp,
                     ),
                     accountEmail: Comman_Text(
-                      text: "${useremail}",
+                      text: sharedPreferences!.getString("profile_email"),
                       color: white,
                       fontSize: 12.sp,
                     ),
@@ -110,7 +110,10 @@ class _HomeScreen1State extends State<HomeScreen1>
                           fontFamily: "JS1",
                           fontWeight: FontWeight.bold,
                           fontSize: Get.height * 0.03,
-                          text: "${username}".split("").first),
+                          text:
+                              "${sharedPreferences!.getString("profile_name")}"
+                                  .split("")
+                                  .first),
                     ),
                   ),
                 ),
