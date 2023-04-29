@@ -94,52 +94,56 @@ class _HomeScreen1State extends State<HomeScreen1>
                             LinearGradient(colors: [DarkGreen2, LightGreen]),
                         borderRadius: BorderRadius.circular(17)),
                     accountName: Comman_Text(
-                      text: sharedPreferences!.getString("profile_name"),
+                      text: "",
+                      // text: sharedPreferences!.getString("profile_name"),
                       color: white,
                       fontSize: 16.sp,
                     ),
                     accountEmail: Comman_Text(
-                      text: sharedPreferences!.getString("profile_email"),
+                      // text:
+                      //     "sharedPreferences!.getString(" "profile_email" "),",
+                      text: "",
                       color: white,
                       fontSize: 12.sp,
                     ),
                     currentAccountPicture: CircleAvatar(
                       backgroundColor: Colors.white,
                       child: Comman_Text(
-                          color: DarkGreen2,
-                          fontFamily: "JS1",
-                          fontWeight: FontWeight.bold,
-                          fontSize: Get.height * 0.03,
-                          text:
-                              "${sharedPreferences!.getString("profile_name")}"
-                                  .split("")
-                                  .first),
+                        color: DarkGreen2,
+                        fontFamily: "JS1",
+                        fontWeight: FontWeight.bold,
+                        fontSize: Get.height * 0.03,
+                        // text:
+                        //     "${sharedPreferences!.getString("profile_name")}"
+                        //         .split("")
+                        //         .first),
+                      ),
                     ),
                   ),
                 ),
+                // Container(
+                //   color: Colors.black,
+                //   child: Column(
+                //     crossAxisAlignment: CrossAxisAlignment.start,
+                //     children: [
+                //       Comman_Text(
+                //         // text: sharedPreferences!.getString("profile_name")!,
+                //         text: "profile email",
+                //         color: black,
+                //         fontSize: 16.sp,
+                //       ),
+                //       Comman_Text(
+                //         //text: sharedPreferences!.getString("profile_email")!,
+                //         text: "profile email",
+                //         color: black,
+                //         fontSize: 12.sp,
+                //       ),
+                //     ],
+                //   ),
+                //   height: Get.height * 0.2,
+                //   width: Get.width * 0.6,
+                // )
               ),
-              // Container(
-              //   color: Colors.black,
-              //   child: Column(
-              //     crossAxisAlignment: CrossAxisAlignment.start,
-              //     children: [
-              //       Comman_Text(
-              //         // text: sharedPreferences!.getString("profile_name")!,
-              //         text: "profile email",
-              //         color: black,
-              //         fontSize: 16.sp,
-              //       ),
-              //       Comman_Text(
-              //         //text: sharedPreferences!.getString("profile_email")!,
-              //         text: "profile email",
-              //         color: black,
-              //         fontSize: 12.sp,
-              //       ),
-              //     ],
-              //   ),
-              //   height: Get.height * 0.2,
-              //   width: Get.width * 0.6,
-              // )
             ],
           ),
           Column(
@@ -210,8 +214,6 @@ class _HomeScreen1State extends State<HomeScreen1>
                                   sharedPreferences!.remove("profile_email");
                                   sharedPreferences!.remove("profile_image");
                                   sharedPreferences!.remove("profile_name");
-                                  username = "";
-                                  useremail = "";
                                   print("remove name${profile_email}");
                                   print("remove name${profile_name}");
                                 },
