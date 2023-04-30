@@ -194,7 +194,7 @@ class _Tab_BarState extends State<Tab_Bar> with SingleTickerProviderStateMixin {
                             .collection("Seller")
                             .doc(FirebaseAuth.instance.currentUser!.uid)
                             .set({
-                          "profile_image": profile_image,
+                          "profile_image": "",
                           "profile_name": profile_name,
                           "profile_email": profile_email,
                           "Seller_id": FirebaseAuth.instance.currentUser!.uid,
@@ -204,8 +204,7 @@ class _Tab_BarState extends State<Tab_Bar> with SingleTickerProviderStateMixin {
                             await SharedPreferences.getInstance();
                         await sharedPreferences.setBool(
                             Splash_ScreenState.KeyValue, true);
-                        await sharedPreferences!
-                            .setString("profile_image", profile_image!);
+
                         await sharedPreferences!
                             .setString("profile_name", profile_name!);
                         await sharedPreferences!
@@ -215,7 +214,7 @@ class _Tab_BarState extends State<Tab_Bar> with SingleTickerProviderStateMixin {
                             content: Text(
                                 "Email is already in use by another accoount")));
                       }
-                      print("User Name1: ${profile_image}");
+
                       print("User photo1 ${profile_name}");
                       print("User Email1 ${profile_email}");
                     });
