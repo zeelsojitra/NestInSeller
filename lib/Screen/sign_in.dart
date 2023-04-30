@@ -48,8 +48,6 @@ class _Sign_InState extends State<Sign_In> {
                 height: 17.sp,
               ),
               Comman_TexxtFiled(
-                filled: true,
-                fillcolor: Colors.grey.shade200,
                 controller: usernamecontroler,
                 hinttext: "Enter Name",
                 validator: (value) {
@@ -113,6 +111,7 @@ class _Sign_InState extends State<Sign_In> {
                   }
                 },
                 onChanged: (value) {},
+                style: TextStyle(fontFamily: "JV1"),
                 controller: Password_controler,
                 obscureText: passwordcheck,
                 decoration: InputDecoration(
@@ -131,7 +130,8 @@ class _Sign_InState extends State<Sign_In> {
                   focusedErrorBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  hintText: "Enter password",
+                  hintText: "Enter Password",
+                  hintStyle: TextStyle(fontFamily: "JM1"),
                   suffixIcon: IconButton(
                     onPressed: () {
                       setState(() {

@@ -90,30 +90,43 @@ class _HomeScreen1State extends State<HomeScreen1>
                   margin: EdgeInsets.zero,
                   child: UserAccountsDrawerHeader(
                     decoration: BoxDecoration(
-                        gradient:
-                            LinearGradient(colors: [DarkGreen2, LightGreen]),
-                        borderRadius: BorderRadius.circular(17)),
+                      gradient:
+                          LinearGradient(colors: [DarkGreen2, LightGreen]),
+                      borderRadius: BorderRadius.circular(17),
+                    ),
                     accountName: Comman_Text(
-                      text: sharedPreferences!.getString("profile_name"),
+                      // text: sharedPreferences?.getString("profile_name"),
+                      text: "NestIn Seller",
+                      fontFamily: "JV1",
                       color: white,
                       fontSize: 16.sp,
                     ),
                     accountEmail: Comman_Text(
-                      text: sharedPreferences!.getString("profile_email"),
+                      // text: sharedPreferences?.getString("profile_email"),
+                      text: "nestinseller@gamil.com",
+                      fontFamily: "JV1",
                       color: white,
-                      fontSize: 12.sp,
+                      fontSize: 16.sp,
                     ),
-                    currentAccountPicture: CircleAvatar(
-                      backgroundColor: Colors.white,
-                      child: Comman_Text(
-                          color: DarkGreen2,
-                          fontFamily: "JS1",
-                          fontWeight: FontWeight.bold,
-                          fontSize: Get.height * 0.03,
-                          text:
-                              "${sharedPreferences!.getString("profile_name")}"
-                                  .split("")
-                                  .first),
+
+                    //margin: EdgeInsets.symmetric(horizontal: 10),
+                    currentAccountPicture: Center(
+                      child: Container(
+                        height: 50.sp,
+                        width: 50.sp,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.white,
+                        ),
+                        child: Center(
+                          child: Comman_Text(
+                              color: DarkGreen2,
+                              fontFamily: "JB1",
+                              fontWeight: FontWeight.bold,
+                              fontSize: Get.height * 0.03,
+                              text: "N".split("").first),
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -149,36 +162,36 @@ class _HomeScreen1State extends State<HomeScreen1>
               (index) => InkWell(
                 onTap: () async {
                   if (index == 0) {
-                    Get.to(Home_Screen());
+                    Get.to(HomeScreen1());
                   }
                   if (index == 1) {
                     Get.to(Order_screen());
                   }
+
                   if (index == 2) {
-                    Get.to(Payment_Screen());
-                  }
-                  if (index == 3) {
                     Get.to(Send_Feedback_screen());
                   }
-                  if (index == 4) {
+                  if (index == 3) {
                     Email email = Email(
                       to: ['nestinecommerce@gmail.com'],
                     );
                     await EmailLauncher.launch(email);
                   }
-                  if (index == 5) {}
-                  if (index == 6) {
+                  if (index == 4) {
                     Get.to(Help_Screen());
                   }
-                  if (index == 7) {
+                  if (index == 5) {
                     showDialog(
                         barrierDismissible: false,
                         context: context,
                         builder: (context) {
                           return AlertDialog(
-                            title: const Text("Logout"),
-                            content:
-                                const Text("Are you sure you want to logout?"),
+                            title: Text("Logout",
+                                style: TextStyle(
+                                    fontFamily: "JM1", fontSize: 20.sp)),
+                            content: Text("Are you sure you want to logout?",
+                                style: TextStyle(
+                                    fontFamily: "JV1", fontSize: 16.sp)),
                             actions: [
                               IconButton(
                                 onPressed: () {
@@ -246,7 +259,9 @@ class _HomeScreen1State extends State<HomeScreen1>
                         ),
                         Comman_Text(
                           text: drawer[index]['name'],
-                          fontSize: 16.sp,
+                          fontSize: 17.sp,
+                          fontFamily: "JV1",
+                          fontWeight: FontWeight.w500,
                           color: Colors.white,
                         )
                       ],
@@ -295,6 +310,9 @@ class _HomeScreen1State extends State<HomeScreen1>
             elevation: 4.0,
             title: const Text(
               "Home",
+              style: TextStyle(
+                fontFamily: "JS1",
+              ),
             ),
             actions: [
               IconButton(

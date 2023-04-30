@@ -30,7 +30,8 @@ class _Send_Feedback_screenState extends State<Send_Feedback_screen> {
                   Text(
                     "Do you find this app \nUseful?",
                     style: TextStyle(
-                        color: Colors.grey,
+                        color: Colors.grey.shade700,
+                        fontFamily: "JV1",
                         fontSize: 15.sp,
                         fontWeight: FontWeight.w500),
                   ),
@@ -65,6 +66,7 @@ class _Send_Feedback_screenState extends State<Send_Feedback_screen> {
                     "How Could We Make This App More Useful",
                     style: TextStyle(
                         color: Colors.black,
+                        fontFamily: "JM1",
                         fontSize: 13.sp,
                         fontWeight: FontWeight.w500),
                   ),
@@ -72,6 +74,7 @@ class _Send_Feedback_screenState extends State<Send_Feedback_screen> {
                     height: 18.sp,
                   ),
                   TextFormField(
+                    style: TextStyle(fontFamily: "JV1"),
                     validator: (value) {
                       if (value!.isEmpty) {
                         return "Please Enter Suggestion";
@@ -96,7 +99,8 @@ class _Send_Feedback_screenState extends State<Send_Feedback_screen> {
                         hintText: "Suggestions.....",
                         hintStyle: TextStyle(
                             color: Colors.grey.shade500,
-                            fontWeight: FontWeight.w500,
+                            fontWeight: FontWeight.w800,
+                            fontFamily: "JV1",
                             fontSize: 13.sp)),
                   ),
                   SizedBox(
@@ -130,6 +134,7 @@ class _Send_Feedback_screenState extends State<Send_Feedback_screen> {
                                           "Send Feedback",
                                           style: TextStyle(
                                               color: Colors.black,
+                                              fontFamily: "JV1",
                                               fontSize: 17.sp,
                                               fontWeight: FontWeight.w600),
                                         ),
@@ -140,6 +145,7 @@ class _Send_Feedback_screenState extends State<Send_Feedback_screen> {
                                           "Thank You For Your Feedback!",
                                           style: TextStyle(
                                               color: Colors.grey,
+                                              fontFamily: "JV1",
                                               fontWeight: FontWeight.w500,
                                               fontSize: 13.sp),
                                         ),
@@ -155,6 +161,7 @@ class _Send_Feedback_screenState extends State<Send_Feedback_screen> {
                                               "OK",
                                               style: TextStyle(
                                                   color: Color(0xff40916C),
+                                                  fontFamily: "JM1",
                                                   fontWeight: FontWeight.bold,
                                                   fontSize: 20),
                                             )),
@@ -179,6 +186,7 @@ class _Send_Feedback_screenState extends State<Send_Feedback_screen> {
                         "Send",
                         style: TextStyle(
                             color: Colors.white,
+                            fontFamily: "JM1",
                             fontWeight: FontWeight.bold,
                             fontSize: 15.sp),
                       )),

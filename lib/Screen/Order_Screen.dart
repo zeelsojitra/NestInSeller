@@ -311,7 +311,7 @@ class _Order_screenState extends State<Order_screen>
                                                 Row(
                                                   children: [
                                                     Comman_Text(
-                                                      text: "Name :",
+                                                      text: "Name:",
                                                       color: Colors.black,
                                                       fontFamily: "JB1",
                                                       fontSize: 13.sp,
@@ -319,12 +319,17 @@ class _Order_screenState extends State<Order_screen>
                                                     SizedBox(
                                                       width: 2.sp,
                                                     ),
-                                                    Comman_Text(
-                                                      text:
-                                                          "${data["product_name"]}",
-                                                      color: grey,
-                                                      fontFamily: "JB1",
-                                                      fontSize: 13.sp,
+                                                    Expanded(
+                                                      child: Comman_Text(
+                                                        overflow: TextOverflow
+                                                            .ellipsis,
+                                                        text:
+                                                            "${data["product_name"]}",
+                                                        color: grey,
+                                                        maxLines: 1,
+                                                        fontFamily: "JB1",
+                                                        fontSize: 13.sp,
+                                                      ),
                                                     ),
                                                   ],
                                                 ),

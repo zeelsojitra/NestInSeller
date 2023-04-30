@@ -112,6 +112,7 @@ class _Sign_UpState extends State<Sign_Up> with SingleTickerProviderStateMixin {
                 height: 15.sp,
               ),
               TextFormField(
+                style: TextStyle(fontFamily: "JV1"),
                 validator: (value) {
                   final bool passwordValid = password.hasMatch(value!);
 
@@ -140,7 +141,8 @@ class _Sign_UpState extends State<Sign_Up> with SingleTickerProviderStateMixin {
                   focusedErrorBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  hintText: "Enter password",
+                  hintText: "Enter Password",
+                  hintStyle: TextStyle(fontFamily: "JM1"),
                   suffixIcon: IconButton(
                     onPressed: () {
                       setState(() {

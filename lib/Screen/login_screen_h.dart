@@ -67,13 +67,19 @@ class _Tab_BarState extends State<Tab_Bar> with SingleTickerProviderStateMixin {
             Text(
               "E-mail Verification",
               style: TextStyle(
-                  fontWeight: FontWeight.bold, fontSize: Get.height * 0.038),
+                  fontWeight: FontWeight.bold,
+                  fontSize: Get.height * 0.038,
+                  fontFamily: "JV1"),
             ),
             SizedBox(height: Get.height * 0.015),
-            Text(
-              "We need to register your E-mail before getting started!",
-              style: TextStyle(fontSize: Get.height * 0.022),
-              textAlign: TextAlign.center,
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              child: Text(
+                "We need to register your E-mail before getting started!",
+                style:
+                    TextStyle(fontSize: Get.height * 0.022, fontFamily: "JV1"),
+                textAlign: TextAlign.center,
+              ),
             ),
             SizedBox(height: Get.height * 0.02),
             Comman_Container(
@@ -91,6 +97,7 @@ class _Tab_BarState extends State<Tab_Bar> with SingleTickerProviderStateMixin {
                         (index) => Center(
                           child: Comman_Text(
                             text: name[index],
+                            fontFamily: "JM1",
                             fontSize: 16.sp,
                             color: selected == index
                                 ? Color(0xff2D6A4F)
@@ -133,6 +140,7 @@ class _Tab_BarState extends State<Tab_Bar> with SingleTickerProviderStateMixin {
               child: Comman_Text(
                 text: "Or Sign In With",
                 color: Colors.grey,
+                fontFamily: "JV1",
                 fontWeight: FontWeight.w400,
                 fontSize: 16.sp,
               ),

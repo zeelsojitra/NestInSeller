@@ -239,7 +239,8 @@ class _Add_ProductState extends State<Add_Product> {
                         Catagory.length,
                         (index) => DropdownMenuItem(
                           value: Catagory[index],
-                          child: Text(Catagory[index]),
+                          child: Text(Catagory[index],
+                              style: TextStyle(fontFamily: "JM1", color: grey)),
                         ),
                       ),
                     ),
@@ -356,6 +357,7 @@ class _Add_ProductState extends State<Add_Product> {
                       "Add",
                       style: TextStyle(
                           color: Colors.black,
+                          fontFamily: "JM1",
                           fontWeight: FontWeight.bold,
                           fontSize: 16.sp),
                     )),
