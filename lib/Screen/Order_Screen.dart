@@ -282,7 +282,7 @@ class _Order_screenState extends State<Order_screen>
                                                     Comman_Text(
                                                         text: "Payment :",
                                                         color: Colors.black,
-                                                        fontFamily: "JB1",
+                                                        //fontFamily: "JB1",
                                                         fontSize: 13.sp,
                                                         fontWeight:
                                                             FontWeight.bold),
@@ -297,7 +297,7 @@ class _Order_screenState extends State<Order_screen>
                                                           child: Comman_Text(
                                                             text: "Online",
                                                             color: red,
-                                                            fontFamily: "JM1",
+                                                            //fontFamily: "JM1",
                                                           ),
                                                         ),
                                                         border: Border.all(
@@ -313,7 +313,7 @@ class _Order_screenState extends State<Order_screen>
                                                     Comman_Text(
                                                       text: "Name:",
                                                       color: Colors.black,
-                                                      fontFamily: "JB1",
+                                                      //fontFamily: "JB1",
                                                       fontSize: 13.sp,
                                                     ),
                                                     SizedBox(
@@ -327,7 +327,7 @@ class _Order_screenState extends State<Order_screen>
                                                             "${data["product_name"]}",
                                                         color: grey,
                                                         maxLines: 1,
-                                                        fontFamily: "JB1",
+                                                        //fontFamily: "JB1",
                                                         fontSize: 13.sp,
                                                       ),
                                                     ),
@@ -341,7 +341,7 @@ class _Order_screenState extends State<Order_screen>
                                                     Comman_Text(
                                                         text: "OrderId:",
                                                         color: Colors.black,
-                                                        fontFamily: "JB1",
+                                                        //fontFamily: "JB1",
                                                         fontSize: 13.sp,
                                                         fontWeight:
                                                             FontWeight.bold),
@@ -353,7 +353,7 @@ class _Order_screenState extends State<Order_screen>
                                                           text:
                                                               "${data["order id"]}",
                                                           color: grey,
-                                                          fontFamily: "JB1",
+                                                          //fontFamily: "JB1",
                                                           maxLines: 1,
                                                           overflow: TextOverflow
                                                               .ellipsis,
@@ -369,7 +369,7 @@ class _Order_screenState extends State<Order_screen>
                                                 Comman_Text(
                                                     text: "Order_Date:",
                                                     color: Colors.black,
-                                                    fontFamily: "JB1",
+                                                    //fontFamily: "JB1",
                                                     fontSize: 13.sp,
                                                     fontWeight:
                                                         FontWeight.bold),
@@ -405,7 +405,7 @@ class _Order_screenState extends State<Order_screen>
                                                     text: "Confirm Order",
                                                     fontSize: 12.sp,
                                                     color: white,
-                                                    fontFamily: "JB1",
+                                                    //fontFamily: "JB1",
                                                   )),
                                                 )
                                               ],

@@ -8,13 +8,13 @@ class Comman_Text extends StatelessWidget {
     this.fontSize,
     this.fontWeight,
     this.decoration,
-    this.fontFamily,
+    // this.fontFamily,
     this.maxLines,
     this.overflow,
   }) : super(key: key);
 
   final text;
-  final String? fontFamily;
+  //final String? fontFamily;
   final color;
   final maxLines;
   final decoration;
@@ -32,7 +32,7 @@ class Comman_Text extends StatelessWidget {
         decoration: decoration,
         color: color,
         fontSize: fontSize,
-        fontFamily: fontFamily,
+        fontFamily: "JV1",
         fontWeight: fontWeight,
       ),
     );

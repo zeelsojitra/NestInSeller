@@ -124,7 +124,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                       backgroundColor: Colors.white,
                       child: Comman_Text(
                           color: DarkGreen2,
-                          fontFamily: "JS1",
+                          //fontFamily: "JS1",
                           fontWeight: FontWeight.bold,
                           fontSize: Get.height * 0.03,
                           text: "${username}".split("").first),

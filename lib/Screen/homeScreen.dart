@@ -58,7 +58,8 @@ class _Home_ScreenState extends State<Home_Screen> {
                 ));
           },
           label: Comman_Text(
-              text: "Add Product", fontSize: 15.sp, fontFamily: "JB1"),
+              text: "Add Product", fontSize: 15.sp, //fontFamily: "JB1",
+    ),
           icon: Icon(
             Icons.add,
             size: 29,
@@ -267,7 +268,7 @@ class _Home_ScreenState extends State<Home_Screen> {
                                                     text: "Product Name:",
                                                     color: Vx.black,
                                                     fontSize: 12.sp,
-                                                    fontFamily: "JB1",
+                                                    //fontFamily: "JB1",
                                                     fontWeight:
                                                         FontWeight.bold),
                                                 Comman_Text(
@@ -275,7 +276,7 @@ class _Home_ScreenState extends State<Home_Screen> {
                                                       "${data["product_name"]}",
                                                   color: grey,
                                                   fontSize: 12.sp,
-                                                  fontFamily: "JM1",
+                                                  //fontFamily: "JM1",
                                                   fontWeight: FontWeight.w600,
                                                 ),
                                               ],
@@ -288,7 +289,7 @@ class _Home_ScreenState extends State<Home_Screen> {
                                                   text: "Product Categaroy:",
                                                   color: Vx.black,
                                                   fontSize: 12.sp,
-                                                  fontFamily: "JB1",
+                                                  //fontFamily: "JB1",
                                                   fontWeight: FontWeight.bold,
                                                 ),
                                                 Comman_Text(
@@ -296,7 +297,7 @@ class _Home_ScreenState extends State<Home_Screen> {
                                                       "${data["product_catagory"]}",
                                                   color: grey,
                                                   fontSize: 12.sp,
-                                                  fontFamily: "JM1",
+                                                  //fontFamily: "JM1",
                                                   fontWeight: FontWeight.w600,
                                                 ),
                                               ],
@@ -309,7 +310,7 @@ class _Home_ScreenState extends State<Home_Screen> {
                                                   text: "Product Price:",
                                                   color: Vx.black,
                                                   fontSize: 12.sp,
-                                                  fontFamily: "JB1",
+                                                  //fontFamily: "JB1",
                                                   fontWeight: FontWeight.bold,
                                                 ),
                                                 Comman_Text(
@@ -317,7 +318,7 @@ class _Home_ScreenState extends State<Home_Screen> {
                                                       "₹${data["product_price"]}",
                                                   color: red,
                                                   fontSize: 12.sp,
-                                                  fontFamily: "JM1",
+                                                  //fontFamily: "JM1",
                                                   fontWeight: FontWeight.bold,
                                                 ),
                                               ],
