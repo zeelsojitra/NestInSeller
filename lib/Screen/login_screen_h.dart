@@ -12,6 +12,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
 
 import '../Common_screen/loding.dart';
+import '../Common_screen/shardpefrence.dart';
 import '../common_screen/Comman_Container.dart';
 import '../common_screen/Comman_text.dart';
 import '../google auth service/google_auth_service.dart';
@@ -204,7 +205,8 @@ class _Tab_BarState extends State<Tab_Bar> with SingleTickerProviderStateMixin {
                           "profile_email": profile_email,
                           "Seller_id": FirebaseAuth.instance.currentUser!.uid,
                         });
-
+                        print("User photo1 ${profile_name}");
+                        print("User Email1 ${profile_email}");
                         SharedPreferences sharedPreferences =
                             await SharedPreferences.getInstance();
                         await sharedPreferences.setBool(
@@ -219,9 +221,6 @@ class _Tab_BarState extends State<Tab_Bar> with SingleTickerProviderStateMixin {
                             content: Text(
                                 "Email is already in use by another accoount")));
                       }
-
-                      print("User photo1 ${profile_name}");
-                      print("User Email1 ${profile_email}");
                     });
                   },
                   child: Container(

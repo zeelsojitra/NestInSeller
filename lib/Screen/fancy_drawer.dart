@@ -37,30 +37,32 @@ class HomeScreen1 extends StatefulWidget {
 
 class _HomeScreen1State extends State<HomeScreen1>
     with SingleTickerProviderStateMixin {
-  String? useremail, username;
+  //String? useremail, username;
   final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
 
-  Future<void> getUserEmail() async {
-    final SharedPreferences prefs = await _prefs;
-
-    final email = prefs.getString("profile_email");
-    final name = prefs.getString("profile_name");
-
-    useremail = email;
-    username = name;
-
-    setState(() {});
-    print("userapp name${email}");
-    print("userapp name${name}");
-  }
+  // Future<void> getUserEmail() async {
+  //   final SharedPreferences prefs = await _prefs;
+  //
+  //   final email = prefs.getString("profile_email");
+  //   final name = prefs.getString("profile_name");
+  //
+  //   useremail = email;
+  //   username = name;
+  //
+  //   setState(() {});
+  //   print("userapp name${email}");
+  //   print("userapp name${name}");
+  // }
 
   late FancyDrawerController _controller;
 
   @override
   void initState() {
-    getUserEmail();
-    print("useremail${useremail}");
-    print("username${username}");
+    print("shprint${profile_name}");
+    print("shprint${profile_email}");
+    // getUserEmail();
+    // print("useremail${useremail}");
+    // print("username${username}");
     super.initState();
     _controller = FancyDrawerController(
         vsync: this, duration: const Duration(milliseconds: 250))
@@ -96,14 +98,12 @@ class _HomeScreen1State extends State<HomeScreen1>
                             LinearGradient(colors: [DarkGreen2, LightGreen]),
                         borderRadius: BorderRadius.circular(17)),
                     accountName: Comman_Text(
-                      text: username,
-                      //fontFamily: "JV1",
+                      text: sharedPreferences!.getString("profile_name"),
                       color: white,
                       fontSize: 16.sp,
                     ),
                     accountEmail: Comman_Text(
-                      text: useremail,
-                      //fontFamily: "JV1",
+                      text: sharedPreferences!.getString("profile_email"),
                       color: white,
                       fontSize: 16.sp,
                     ),
@@ -119,16 +119,15 @@ class _HomeScreen1State extends State<HomeScreen1>
                         ),
                         child: Center(
                           child: Comman_Text(
-                            color: DarkGreen2,
-                            //fontFamily: "JV1",
-                            fontWeight: FontWeight.bold,
-                            fontSize: Get.height * 0.03,
-                            text: "h",
-                            // text:
-                            //     username
-                            //         .split("")
-                            //         .first,
-                          ),
+                              color: DarkGreen2,
+                              //fontFamily: "JV1",
+                              fontWeight: FontWeight.bold,
+                              fontSize: Get.height * 0.03,
+                              text:
+                                  "${sharedPreferences!.getString("profile_name")}"
+                                      .capitalized
+                                      .split("")
+                                      .first),
                         ),
                       ),
                     ),
@@ -165,7 +164,7 @@ class _HomeScreen1State extends State<HomeScreen1>
               (index) => InkWell(
                 onTap: () async {
                   if (index == 0) {
-                    Get.to(Home_Screen());
+                    Get.to(HomeScreen1());
                   }
                   if (index == 1) {
                     Get.to(Order_screen());
@@ -182,19 +181,20 @@ class _HomeScreen1State extends State<HomeScreen1>
                     );
                     await EmailLauncher.launch(email);
                   }
-                  if (index == 5) {}
-                  if (index == 6) {
+                  if (index == 5) {
                     Get.to(Help_Screen());
                   }
-                  if (index == 7) {
+                  if (index == 6) {
                     showDialog(
                         barrierDismissible: false,
                         context: context,
                         builder: (context) {
                           return AlertDialog(
-                            title: const Text("Logout"),
-                            content:
-                                const Text("Are you sure you want to logout?"),
+                            title: const Comman_Text(
+                                text: "Logout", fontWeight: FontWeight.bold),
+                            content: const Comman_Text(
+                              text: "Are you sure you want to logout?",
+                            ),
                             actions: [
                               IconButton(
                                 onPressed: () {
@@ -226,10 +226,6 @@ class _HomeScreen1State extends State<HomeScreen1>
                                   sharedPreferences!.remove("profile_email");
                                   sharedPreferences!.remove("profile_image");
                                   sharedPreferences!.remove("profile_name");
-                                  username = "";
-                                  useremail = "";
-                                  print("remove name${profile_email}");
-                                  print("remove name${profile_name}");
                                 },
                               ),
                             ],
@@ -300,7 +296,8 @@ class _HomeScreen1State extends State<HomeScreen1>
                     ));
               },
               label: Comman_Text(
-                text: "Add Product", fontSize: 15.sp, //fontFamily: "JB1",
+                text: "Add Product",
+                fontSize: 15.sp,
               ),
               icon: Icon(
                 Icons.add,
@@ -313,12 +310,6 @@ class _HomeScreen1State extends State<HomeScreen1>
             title: const Text(
               "Home",
             ),
-            actions: [
-              IconButton(
-                onPressed: () {},
-                icon: Icon(Icons.add_shopping_cart_outlined),
-              )
-            ],
             backgroundColor: DarkGreen2,
             leading: IconButton(
               icon: const Icon(
@@ -413,7 +404,6 @@ class _HomeScreen1State extends State<HomeScreen1>
                                                           text: "Product Name:",
                                                           color: Vx.black,
                                                           fontSize: 12.sp,
-                                                          //fontFamily: "JB1",
                                                           fontWeight:
                                                               FontWeight.bold),
                                                       Comman_Text(
@@ -421,7 +411,6 @@ class _HomeScreen1State extends State<HomeScreen1>
                                                             "${data["product_name"]}",
                                                         color: grey,
                                                         fontSize: 12.sp,
-                                                        //fontFamily: "JM1",
                                                         fontWeight:
                                                             FontWeight.w600,
                                                       ),
@@ -437,7 +426,6 @@ class _HomeScreen1State extends State<HomeScreen1>
                                                             "Product Categaroy:",
                                                         color: Vx.black,
                                                         fontSize: 12.sp,
-                                                        //fontFamily: "JB1",
                                                         fontWeight:
                                                             FontWeight.bold,
                                                       ),
@@ -446,7 +434,6 @@ class _HomeScreen1State extends State<HomeScreen1>
                                                             "${data["product_catagory"]}",
                                                         color: grey,
                                                         fontSize: 12.sp,
-                                                        //fontFamily: "JM1",
                                                         fontWeight:
                                                             FontWeight.w600,
                                                       ),
@@ -461,7 +448,6 @@ class _HomeScreen1State extends State<HomeScreen1>
                                                         text: "Product Price:",
                                                         color: Vx.black,
                                                         fontSize: 12.sp,
-                                                        //fontFamily: "JB1",
                                                         fontWeight:
                                                             FontWeight.bold,
                                                       ),
@@ -470,7 +456,6 @@ class _HomeScreen1State extends State<HomeScreen1>
                                                             "₹${data["product_price"]}",
                                                         color: red,
                                                         fontSize: 12.sp,
-                                                        //fontFamily: "JM1",
                                                         fontWeight:
                                                             FontWeight.bold,
                                                       ),
@@ -509,8 +494,11 @@ class _HomeScreen1State extends State<HomeScreen1>
     return await showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Comman_Text(text: "Really?"),
-        content: Comman_Text(text: "Do you want to close app??"),
+        title: Comman_Text(text: "Really?", fontWeight: FontWeight.bold),
+        content: Comman_Text(
+          text: "Do you want to close app??",
+          fontWeight: FontWeight.w400,
+        ),
         actions: [
           IconButton(
               onPressed: () {

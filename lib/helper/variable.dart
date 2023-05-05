@@ -79,6 +79,10 @@ List drawer = [
     "name": "Order",
     "icon": Icon(Icons.add_box_outlined, color: Color(0xff74C69D), size: 22.sp),
   },
+  {
+    "name": "Payment",
+    "icon": Icon(Icons.payment, color: Color(0xff74C69D), size: 22.sp),
+  },
 
   {
     "name": "Send Feedback",
