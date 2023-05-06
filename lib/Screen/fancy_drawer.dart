@@ -113,6 +113,7 @@ class _HomeScreen1State extends State<HomeScreen1>
                         fontFamily: "JS1",
                         fontWeight: FontWeight.bold,
                         fontSize: Get.height * 0.03,
+                        text: "",
                         // text:
                         //     "${sharedPreferences!.getString("profile_name")}"
                         //         .split("")
