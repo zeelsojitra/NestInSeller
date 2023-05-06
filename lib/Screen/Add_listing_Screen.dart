@@ -11,6 +11,7 @@ import '../Common_screen/Comman_Container.dart';
 import '../Common_screen/Comman_TeextFiled.dart';
 import '../getx/controller.dart';
 import '../helper/variable.dart';
+import 'fancy_drawer.dart';
 import 'homeScreen.dart';
 
 class Add_Product extends StatefulWidget {
@@ -322,7 +323,7 @@ class _Add_ProductState extends State<Add_Product> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => Home_Screen(),
+                            builder: (context) => HomeScreen1(),
                           ));
                       DocumentReference docRef = FirebaseFirestore.instance
                           .collection("Product")

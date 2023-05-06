@@ -110,7 +110,7 @@ class _HomeScreen1State extends State<HomeScreen1>
                       backgroundColor: Colors.white,
                       child: Comman_Text(
                         color: DarkGreen2,
-                        fontFamily: "JS1",
+                        //fontFamily: "JS1",
                         fontWeight: FontWeight.bold,
                         fontSize: Get.height * 0.03,
                         // text:
@@ -153,7 +153,7 @@ class _HomeScreen1State extends State<HomeScreen1>
               (index) => InkWell(
                 onTap: () async {
                   if (index == 0) {
-                    Get.to(Home_Screen());
+                    Get.to(HomeScreen1());
                   }
                   if (index == 1) {
                     Get.to(Order_screen());
@@ -286,7 +286,8 @@ class _HomeScreen1State extends State<HomeScreen1>
                     ));
               },
               label: Comman_Text(
-                  text: "Add Product", fontSize: 15.sp, fontFamily: "JB1"),
+                text: "Add Product", fontSize: 15.sp, //fontFamily: "JB1"
+              ),
               icon: Icon(
                 Icons.add,
                 size: 29,
