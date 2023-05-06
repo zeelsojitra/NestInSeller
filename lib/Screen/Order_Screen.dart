@@ -175,28 +175,28 @@ class _Order_screenState extends State<Order_screen>
             SizedBox(
               height: 10.sp,
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: TextField(
-                cursorColor: Colors.grey,
-                onTap: () {},
-                style: TextStyle(fontFamily: "JM1"),
-                decoration: InputDecoration(
-                    contentPadding: EdgeInsets.symmetric(vertical: 10),
-                    prefixIcon: Icon(Icons.search, color: Colors.grey),
-                    fillColor: Colors.white,
-                    filled: true,
-                    enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide(color: Colors.grey, width: 1)),
-                    focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide(color: Colors.grey, width: 1)),
-                    hintText: "Enter Oder ID/item ID",
-                    hintStyle:
-                        TextStyle(color: Colors.grey.shade400, fontSize: 18)),
-              ),
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.symmetric(horizontal: 10),
+            //   child: TextField(
+            //     cursorColor: Colors.grey,
+            //     onTap: () {},
+            //     style: TextStyle(fontFamily: "JM1"),
+            //     decoration: InputDecoration(
+            //         contentPadding: EdgeInsets.symmetric(vertical: 10),
+            //         prefixIcon: Icon(Icons.search, color: Colors.grey),
+            //         fillColor: Colors.white,
+            //         filled: true,
+            //         enabledBorder: OutlineInputBorder(
+            //             borderRadius: BorderRadius.circular(10),
+            //             borderSide: BorderSide(color: Colors.grey, width: 1)),
+            //         focusedBorder: OutlineInputBorder(
+            //             borderRadius: BorderRadius.circular(10),
+            //             borderSide: BorderSide(color: Colors.grey, width: 1)),
+            //         hintText: "Enter Oder ID/item ID",
+            //         hintStyle:
+            //             TextStyle(color: Colors.grey.shade400, fontSize: 18)),
+            //   ),
+            // ),
             StreamBuilder(
                 stream: FirebaseFirestore.instance
                     .collection('Order')
@@ -210,8 +210,7 @@ class _Order_screenState extends State<Order_screen>
                     return Center(child: CircularProgressIndicator());
                   }
                   return snapshot.data!.docs.isNotEmpty
-                      ? SizedBox(
-                          height: 400.sp,
+                      ? Expanded(
                           child: ListView.builder(
                             itemCount: snapshot.data!.docs.length,
                             itemBuilder: (context, index) {
@@ -282,7 +281,7 @@ class _Order_screenState extends State<Order_screen>
                                                     Comman_Text(
                                                         text: "Payment :",
                                                         color: Colors.black,
-                                                        fontFamily: "JB1",
+                                                        //fontFamily: "JB1",
                                                         fontSize: 13.sp,
                                                         fontWeight:
                                                             FontWeight.bold),
@@ -297,7 +296,7 @@ class _Order_screenState extends State<Order_screen>
                                                           child: Comman_Text(
                                                             text: "Online",
                                                             color: red,
-                                                            fontFamily: "JM1",
+                                                            //fontFamily: "JM1",
                                                           ),
                                                         ),
                                                         border: Border.all(
@@ -311,20 +310,25 @@ class _Order_screenState extends State<Order_screen>
                                                 Row(
                                                   children: [
                                                     Comman_Text(
-                                                      text: "Name :",
+                                                      text: "Name:",
                                                       color: Colors.black,
-                                                      fontFamily: "JB1",
+                                                      //fontFamily: "JB1",
                                                       fontSize: 13.sp,
                                                     ),
                                                     SizedBox(
                                                       width: 2.sp,
                                                     ),
-                                                    Comman_Text(
-                                                      text:
-                                                          "${data["product_name"]}",
-                                                      color: grey,
-                                                      fontFamily: "JB1",
-                                                      fontSize: 13.sp,
+                                                    Expanded(
+                                                      child: Comman_Text(
+                                                        overflow: TextOverflow
+                                                            .ellipsis,
+                                                        text:
+                                                            "${data["product_name"]}",
+                                                        color: grey,
+                                                        maxLines: 1,
+                                                        //fontFamily: "JB1",
+                                                        fontSize: 13.sp,
+                                                      ),
                                                     ),
                                                   ],
                                                 ),
@@ -336,7 +340,7 @@ class _Order_screenState extends State<Order_screen>
                                                     Comman_Text(
                                                         text: "OrderId:",
                                                         color: Colors.black,
-                                                        fontFamily: "JB1",
+                                                        //fontFamily: "JB1",
                                                         fontSize: 13.sp,
                                                         fontWeight:
                                                             FontWeight.bold),
@@ -348,7 +352,7 @@ class _Order_screenState extends State<Order_screen>
                                                           text:
                                                               "${data["order id"]}",
                                                           color: grey,
-                                                          fontFamily: "JB1",
+                                                          //fontFamily: "JB1",
                                                           maxLines: 1,
                                                           overflow: TextOverflow
                                                               .ellipsis,
@@ -364,7 +368,7 @@ class _Order_screenState extends State<Order_screen>
                                                 Comman_Text(
                                                     text: "Order_Date:",
                                                     color: Colors.black,
-                                                    fontFamily: "JB1",
+                                                    //fontFamily: "JB1",
                                                     fontSize: 13.sp,
                                                     fontWeight:
                                                         FontWeight.bold),
@@ -400,7 +404,7 @@ class _Order_screenState extends State<Order_screen>
                                                     text: "Confirm Order",
                                                     fontSize: 12.sp,
                                                     color: white,
-                                                    fontFamily: "JB1",
+                                                    //fontFamily: "JB1",
                                                   )),
                                                 )
                                               ],

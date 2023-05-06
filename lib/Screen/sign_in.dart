@@ -1,12 +1,17 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fashion_seller_hub/Screen/fancy_drawer.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
 import 'package:flutter/material.dart';
 import '../Common_screen/Comman_Container.dart';
 import '../Common_screen/Comman_TeextFiled.dart';
 import '../Common_screen/Comman_text.dart';
+import '../Common_screen/loding.dart';
 import '../Common_screen/shardpefrence.dart';
 import '../email authantication/EmailAuthService.dart';
+import '../google auth service/google_auth_service.dart';
 import '../helper/variable.dart';
 import 'Splash_Screen.dart';
 import 'homeScreen.dart';
@@ -48,8 +53,6 @@ class _Sign_InState extends State<Sign_In> {
                 height: 17.sp,
               ),
               Comman_TexxtFiled(
-                filled: true,
-                fillcolor: Colors.grey.shade200,
                 controller: usernamecontroler,
                 hinttext: "Enter Name",
                 validator: (value) {
@@ -113,6 +116,7 @@ class _Sign_InState extends State<Sign_In> {
                   }
                 },
                 onChanged: (value) {},
+                style: TextStyle(fontFamily: "JV1"),
                 controller: Password_controler,
                 obscureText: passwordcheck,
                 decoration: InputDecoration(
@@ -131,7 +135,8 @@ class _Sign_InState extends State<Sign_In> {
                   focusedErrorBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  hintText: "Enter password",
+                  hintText: "Enter Password",
+                  hintStyle: TextStyle(fontFamily: "JM1"),
                   suffixIcon: IconButton(
                     onPressed: () {
                       setState(() {
@@ -159,35 +164,41 @@ class _Sign_InState extends State<Sign_In> {
                     print("hello");
                     setState(() {
                       if (gloablekey.currentState!.validate()) {
-                        String? name, email;
-                        name = usernamecontroler.text;
-                        email = Email_controler.text;
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return LodingDiloge(
+                              message: "",
+                            );
+                          },
+                        );
                         EmailAuthService.LoginUser(
                                 password: Password_controler.text,
                                 email: Email_controler.text)
                             .then((value) async {
                           if (value != null) {
-                            SharedPreferences sh =
-                                await SharedPreferences.getInstance();
-                            Email_controler.clear();
-                            Password_controler.clear();
-                            sh
-                                .setBool(Splash_ScreenState.KeyValue, true)
-                                .whenComplete(
-                                  () => Navigator.pushReplacement(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => HomeScreen1(),
-                                      )),
-                                );
-                            await sharedPreferences!
-                                .setString("profile_email", email!);
-                            await sharedPreferences!
-                                .setString("profile_name", name!);
-                          } else {
-                            setState(() {
-                              isLoding = false;
+                            Get.back();
+                            Get.off(HomeScreen1());
+                            FirebaseFirestore.instance
+                                .collection("Seller")
+                                .doc(FirebaseAuth.instance.currentUser!.uid)
+                                .set({
+                              "profile_image": "",
+                              "profile_name": profile_name,
+                              "profile_email": profile_email,
+                              "Seller_id":
+                                  FirebaseAuth.instance.currentUser!.uid,
                             });
+                            SharedPreferences sharedPreferences =
+                                await SharedPreferences.getInstance();
+                            await sharedPreferences.setBool(
+                                Splash_ScreenState.KeyValue, true);
+                            await sharedPreferences.setString(
+                                "profile_name", usernamecontroler.text);
+                            await sharedPreferences.setString(
+                                "profile_email", Email_controler.text);
+                          } else {
+                            Get.back();
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                 content: Comman_Text(
                               text: "Invalid Email or Password",

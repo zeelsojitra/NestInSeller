@@ -1,12 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
 import '../Common_screen/Comman_Container.dart';
 import '../Common_screen/Comman_TeextFiled.dart';
 import '../Common_screen/Comman_text.dart';
+import '../Common_screen/loding.dart';
 import '../email authantication/EmailAuthService.dart';
 import '../helper/variable.dart';
+import 'Splash_Screen.dart';
+import 'fancy_drawer.dart';
 
 class Sign_Up extends StatefulWidget {
   const Sign_Up({Key? key}) : super(key: key);
@@ -112,6 +117,7 @@ class _Sign_UpState extends State<Sign_Up> with SingleTickerProviderStateMixin {
                 height: 15.sp,
               ),
               TextFormField(
+                style: TextStyle(fontFamily: "JV1"),
                 validator: (value) {
                   final bool passwordValid = password.hasMatch(value!);
 
@@ -121,7 +127,9 @@ class _Sign_UpState extends State<Sign_Up> with SingleTickerProviderStateMixin {
                     return "please enter valid password";
                   }
                 },
-                onChanged: (value) {},
+                onChanged: (value) {
+                  gloablekey.currentState!.validate();
+                },
                 controller: Password_controler,
                 obscureText: passwordcheck,
                 decoration: InputDecoration(
@@ -140,7 +148,8 @@ class _Sign_UpState extends State<Sign_Up> with SingleTickerProviderStateMixin {
                   focusedErrorBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  hintText: "Enter password",
+                  hintText: "Enter Password",
+                  hintStyle: TextStyle(fontFamily: "JM1"),
                   suffixIcon: IconButton(
                     onPressed: () {
                       setState(() {
@@ -167,18 +176,21 @@ class _Sign_UpState extends State<Sign_Up> with SingleTickerProviderStateMixin {
                   ontap: () {
                     print("hello");
                     if (gloablekey.currentState!.validate()) {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return LodingDiloge(
+                            message: "",
+                          );
+                        },
+                      );
                       EmailAuthService.SignupUser(
                               email: Email_controler.text,
                               password: Password_controler.text)
                           .then((value) async {
                         if (value != null) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content:
-                                  Text("Successfully SignUp Plz Login App"),
-                            ),
-                          );
-
+                          Get.back();
+                          Get.off(HomeScreen1());
                           FirebaseFirestore.instance
                               .collection("Seller")
                               .doc(FirebaseAuth.instance.currentUser!.uid)
@@ -187,10 +199,16 @@ class _Sign_UpState extends State<Sign_Up> with SingleTickerProviderStateMixin {
                             "profile_name": Usernamecontroler.text,
                             "profile_email": Email_controler.text,
                           });
-                          Usernamecontroler.clear();
-                          Email_controler.clear();
-                          Password_controler.clear();
+                          SharedPreferences sharedPreferences =
+                              await SharedPreferences.getInstance();
+                          await sharedPreferences.setBool(
+                              Splash_ScreenState.KeyValue, true);
+                          await sharedPreferences.setString(
+                              "profile_name", Usernamecontroler.text);
+                          await sharedPreferences.setString(
+                              "profile_email", Email_controler.text);
                         } else {
+                          Get.back();
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
                               content:

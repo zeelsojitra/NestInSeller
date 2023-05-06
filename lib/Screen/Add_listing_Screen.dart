@@ -27,14 +27,14 @@ class _Add_ProductState extends State<Add_Product> {
     "chhattisgarh_dhoti_kurta",
     "chhattisgarh_paghadi",
     "chhattisgarh_saree",
-    "Goa_dangar-topi",
-    "Goa_kunbi-saree",
+    "Goa_dangar_topi",
+    "Goa_kunbi_saree",
     "Goa_pano_bhaju",
-    "Gujarat_bandhani",
-    "Gujarat_chaniya-choli",
-    "Gujarat_ghaghra",
-    "Gujarat_kediyu",
-    "Gujarat_patola",
+    "Gujrat_bandhani",
+    "Gujrat_chaniyacoli",
+    "Gujrat_ghaghra",
+    "Gujrat_kediyu",
+    "Gujrat_patola",
     "haryana_dhoti",
     "haryana_ghaghra_choli",
     "haryana_kurta_payjama",
@@ -342,8 +342,6 @@ class _Add_ProductState extends State<Add_Product> {
                           .catchError((error) {
                             print("an error occured${error}");
                           });
-                      ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text("Product Added!")));
                     }
                   },
                   child: Container(

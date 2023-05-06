@@ -12,6 +12,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
 
 import '../Common_screen/loding.dart';
+import '../Common_screen/shardpefrence.dart';
 import '../common_screen/Comman_Container.dart';
 import '../common_screen/Comman_text.dart';
 import '../google auth service/google_auth_service.dart';
@@ -67,13 +68,19 @@ class _Tab_BarState extends State<Tab_Bar> with SingleTickerProviderStateMixin {
             Text(
               "E-mail Verification",
               style: TextStyle(
-                  fontWeight: FontWeight.bold, fontSize: Get.height * 0.038),
+                  fontWeight: FontWeight.bold,
+                  fontSize: Get.height * 0.038,
+                  fontFamily: "JV1"),
             ),
             SizedBox(height: Get.height * 0.015),
-            Text(
-              "We need to register your E-mail before getting started!",
-              style: TextStyle(fontSize: Get.height * 0.022),
-              textAlign: TextAlign.center,
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              child: Text(
+                "We need to register your E-mail before getting started!",
+                style:
+                    TextStyle(fontSize: Get.height * 0.022, fontFamily: "JV1"),
+                textAlign: TextAlign.center,
+              ),
             ),
             SizedBox(height: Get.height * 0.02),
             Comman_Container(
@@ -91,6 +98,7 @@ class _Tab_BarState extends State<Tab_Bar> with SingleTickerProviderStateMixin {
                         (index) => Center(
                           child: Comman_Text(
                             text: name[index],
+                            //fontFamily: "JM1",
                             fontSize: 16.sp,
                             color: selected == index
                                 ? Color(0xff2D6A4F)
@@ -103,7 +111,7 @@ class _Tab_BarState extends State<Tab_Bar> with SingleTickerProviderStateMixin {
                   Comman_Container(
                     BorderRadius: BorderRadius.circular(40),
                     color: Colors.white,
-                    height: 270.sp,
+                    height: 273.sp,
                     width: 500.sp,
                     child: TabBarView(
                       controller: tabController,
@@ -125,14 +133,15 @@ class _Tab_BarState extends State<Tab_Bar> with SingleTickerProviderStateMixin {
                   blurRadius: 7,
                 )
               ],
-              height: 320.sp,
-              width: 260.sp,
+              height: 322.sp,
+              width: 270.sp,
             ),
             SizedBox(height: 20.sp),
             Center(
               child: Comman_Text(
                 text: "Or Sign In With",
                 color: Colors.grey,
+                //fontFamily: "JV1",
                 fontWeight: FontWeight.w400,
                 fontSize: 16.sp,
               ),
@@ -175,13 +184,18 @@ class _Tab_BarState extends State<Tab_Bar> with SingleTickerProviderStateMixin {
                 // ),
                 GestureDetector(
                   onTap: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return LodingDiloge(
+                          message: "",
+                        );
+                      },
+                    );
                     GoogleAuthService.signInWithGoogle().then((value) async {
                       if (value != null) {
-                        Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => HomeScreen1(),
-                            ));
+                        Get.back();
+                        Get.off(HomeScreen1());
                         FirebaseFirestore.instance
                             .collection("Seller")
                             .doc(FirebaseAuth.instance.currentUser!.uid)
@@ -191,24 +205,22 @@ class _Tab_BarState extends State<Tab_Bar> with SingleTickerProviderStateMixin {
                           "profile_email": profile_email,
                           "Seller_id": FirebaseAuth.instance.currentUser!.uid,
                         });
-
+                        print("User photo1 ${profile_name}");
+                        print("User Email1 ${profile_email}");
                         SharedPreferences sharedPreferences =
                             await SharedPreferences.getInstance();
                         await sharedPreferences.setBool(
                             Splash_ScreenState.KeyValue, true);
-
-                        await sharedPreferences!
-                            .setString("profile_name", profile_name!);
-                        await sharedPreferences!
-                            .setString("profile_email", profile_email!);
+                        await sharedPreferences.setString(
+                            "profile_name", profile_name!);
+                        await sharedPreferences.setString(
+                            "profile_email", profile_email!);
                       } else {
+                        Get.back();
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                             content: Text(
                                 "Email is already in use by another accoount")));
                       }
-
-                      print("User photo1 ${profile_name}");
-                      print("User Email1 ${profile_email}");
                     });
                   },
                   child: Container(

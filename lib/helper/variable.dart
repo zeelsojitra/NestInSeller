@@ -80,9 +80,10 @@ List drawer = [
     "icon": Icon(Icons.add_box_outlined, color: Color(0xff74C69D), size: 22.sp),
   },
   {
-    "name": "Payments",
-    "icon": Icon(Icons.currency_rupee, color: Color(0xff74C69D), size: 22.sp),
+    "name": "Payment",
+    "icon": Icon(Icons.payment, color: Color(0xff74C69D), size: 22.sp),
   },
+
   {
     "name": "Send Feedback",
     "icon":
@@ -93,11 +94,7 @@ List drawer = [
     "icon": Icon(Icons.contact_support_outlined,
         color: Color(0xff74C69D), size: 22.sp),
   },
-  {
-    "name": "About Us",
-    "icon":
-        Icon(Icons.feedback_outlined, color: Color(0xff74C69D), size: 22.sp),
-  },
+
   {
     "name": "Help",
     "icon":
