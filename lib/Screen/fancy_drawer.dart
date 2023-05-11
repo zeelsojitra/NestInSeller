@@ -37,32 +37,28 @@ class HomeScreen1 extends StatefulWidget {
 
 class _HomeScreen1State extends State<HomeScreen1>
     with SingleTickerProviderStateMixin {
-  //String? useremail, username;
+  String? useremail, username;
   final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
 
-  // Future<void> getUserEmail() async {
-  //   final SharedPreferences prefs = await _prefs;
-  //
-  //   final email = prefs.getString("profile_email");
-  //   final name = prefs.getString("profile_name");
-  //
-  //   useremail = email;
-  //   username = name;
-  //
-  //   setState(() {});
-  //   print("userapp name${email}");
-  //   print("userapp name${name}");
-  // }
+  Future<void> getUserEmail() async {
+    final SharedPreferences prefs = await _prefs;
+
+    final email = prefs.getString("profile_email");
+    final name = prefs.getString("profile_name");
+
+    useremail = email;
+    username = name;
+
+    setState(() {});
+    print("userapp name${email}");
+    print("userapp name${name}");
+  }
 
   late FancyDrawerController _controller;
 
   @override
   void initState() {
-    print("shprint${profile_name}");
-    print("shprint${profile_email}");
-    // getUserEmail();
-    // print("useremail${useremail}");
-    // print("username${username}");
+    getUserEmail();
     super.initState();
     _controller = FancyDrawerController(
         vsync: this, duration: const Duration(milliseconds: 250))
@@ -98,37 +94,29 @@ class _HomeScreen1State extends State<HomeScreen1>
                             LinearGradient(colors: [DarkGreen2, LightGreen]),
                         borderRadius: BorderRadius.circular(17)),
                     accountName: Comman_Text(
-                      text: sharedPreferences!.getString("profile_name"),
+                      text: "",
+                      // text: sharedPreferences!.getString("profile_name"),
                       color: white,
                       fontSize: 16.sp,
                     ),
                     accountEmail: Comman_Text(
-                      text: sharedPreferences!.getString("profile_email"),
+                      // text:
+                      //     "sharedPreferences!.getString(" "profile_email" "),",
+                      text: "",
                       color: white,
-                      fontSize: 16.sp,
+                      fontSize: 12.sp,
                     ),
-
-                    //margin: EdgeInsets.symmetric(horizontal: 10),
-                    currentAccountPicture: Center(
-                      child: Container(
-                        height: 50.sp,
-                        width: 50.sp,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.white,
-                        ),
-                        child: Center(
-                          child: Comman_Text(
-                              color: DarkGreen2,
-                              //fontFamily: "JV1",
-                              fontWeight: FontWeight.bold,
-                              fontSize: Get.height * 0.03,
-                              text:
-                                  "${sharedPreferences!.getString("profile_name")}"
-                                      .capitalized
-                                      .split("")
-                                      .first),
-                        ),
+                    currentAccountPicture: CircleAvatar(
+                      backgroundColor: Colors.white,
+                      child: Comman_Text(
+                        color: DarkGreen2,
+                        //fontFamily: "JS1",
+                        fontWeight: FontWeight.bold,
+                        fontSize: Get.height * 0.03,
+                        // text:
+                        //     "${sharedPreferences!.getString("profile_name")}"
+                        //         .split("")
+                        //         .first),
                       ),
                     ),
                   ),
@@ -154,6 +142,7 @@ class _HomeScreen1State extends State<HomeScreen1>
                 //   ),
                 //   height: Get.height * 0.2,
                 //   width: Get.width * 0.6,
+                // )
               ),
             ],
           ),
@@ -181,20 +170,19 @@ class _HomeScreen1State extends State<HomeScreen1>
                     );
                     await EmailLauncher.launch(email);
                   }
-                  if (index == 5) {
+                  if (index == 5) {}
+                  if (index == 6) {
                     Get.to(Help_Screen());
                   }
-                  if (index == 6) {
+                  if (index == 7) {
                     showDialog(
                         barrierDismissible: false,
                         context: context,
                         builder: (context) {
                           return AlertDialog(
-                            title: const Comman_Text(
-                                text: "Logout", fontWeight: FontWeight.bold),
-                            content: const Comman_Text(
-                              text: "Are you sure you want to logout?",
-                            ),
+                            title: const Text("Logout"),
+                            content:
+                                const Text("Are you sure you want to logout?"),
                             actions: [
                               IconButton(
                                 onPressed: () {
@@ -226,6 +214,8 @@ class _HomeScreen1State extends State<HomeScreen1>
                                   sharedPreferences!.remove("profile_email");
                                   sharedPreferences!.remove("profile_image");
                                   sharedPreferences!.remove("profile_name");
+                                  print("remove name${profile_email}");
+                                  print("remove name${profile_name}");
                                 },
                               ),
                             ],
@@ -296,8 +286,7 @@ class _HomeScreen1State extends State<HomeScreen1>
                     ));
               },
               label: Comman_Text(
-                text: "Add Product",
-                fontSize: 15.sp,
+                text: "Add Product", fontSize: 15.sp, //fontFamily: "JB1"
               ),
               icon: Icon(
                 Icons.add,
@@ -310,6 +299,12 @@ class _HomeScreen1State extends State<HomeScreen1>
             title: const Text(
               "Home",
             ),
+            actions: [
+              IconButton(
+                onPressed: () {},
+                icon: Icon(Icons.add_shopping_cart_outlined),
+              )
+            ],
             backgroundColor: DarkGreen2,
             leading: IconButton(
               icon: const Icon(
@@ -320,203 +315,291 @@ class _HomeScreen1State extends State<HomeScreen1>
               },
             ),
           ),
-          body: WillPopScope(
-            onWillPop: onBackButtonPressed,
-            child: Center(
-              child: Column(
-                children: [
-                  StreamBuilder(
-                    stream: FirebaseFirestore.instance
-                        .collection("Product")
-                        .where("seller_id",
-                            isEqualTo:
-                                "${FirebaseAuth.instance.currentUser!.uid}")
-                        .snapshots(),
-                    builder: (BuildContext context,
-                        AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>>
-                            snapshot) {
-                      if (!snapshot.hasData) {
-                        return Center(child: CircularProgressIndicator());
-                      }
-                      return snapshot.data!.docs.isNotEmpty
-                          ? Expanded(
-                              child: ListView.builder(
-                                itemCount: snapshot.data?.docs.length,
-                                itemBuilder: (context, index) {
-                                  var data = snapshot.data!.docs[index];
-                                  //print("numberofoder${snapshot.data?.docs.length}");
-                                  return Padding(
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: 10.sp, vertical: 10.sp),
-                                    child: InkWell(
-                                      onTap: () {
-                                        Get.to(
-                                          ProductDetilsScreen(
-                                            image: data['image'],
-                                            category: data["product_catagory"],
-                                            details: data["product_details"],
-                                            name: data["product_name"],
-                                            price: data["product_price"],
-                                            stock: data["product_stock"],
-                                          ),
-                                        );
-                                      },
-                                      child: Card(
-                                        elevation: 5,
-                                        color: Colors.grey.shade200,
-                                        child: Comman_Container(
-                                          height: 140.sp,
-                                          width: 120.sp,
-                                          child: Row(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Padding(
-                                                padding: EdgeInsets.symmetric(
-                                                    vertical: 10.sp,
-                                                    horizontal: 10.sp),
-                                                child: Comman_Container(
-                                                  height: 140.sp,
-                                                  width: 80.sp,
-                                                  BorderRadius:
-                                                      BorderRadius.circular(
-                                                          5.sp),
-                                                  image: DecorationImage(
-                                                    image: NetworkImage(
-                                                        data["image"]),
-                                                    fit: BoxFit.cover,
-                                                  ),
+          body: Center(
+            child: Column(
+              children: [
+                // Column(
+                //   children: [
+                //     GetBuilder<Controller>(
+                //       builder: (controller) {
+                //         return Column(
+                //           children: [
+                //             Stack(
+                //               children: [
+                //                 VxSwiper.builder(
+                //                   onPageChanged: (index) {
+                //                     controller.setSelectScreen(index);
+                //                   },
+                //                   aspectRatio: 16 / 9,
+                //                   height: 130.sp,
+                //                   autoPlayAnimationDuration: Duration(seconds: 2),
+                //                   enlargeCenterPage: true,
+                //                   itemCount: Pageview.length,
+                //                   itemBuilder: (context, index) {
+                //                     return Padding(
+                //                       padding: const EdgeInsets.all(8.0),
+                //                       child: Comman_Container(
+                //                         child: Padding(
+                //                           padding: EdgeInsets.symmetric(
+                //                               vertical: 15.sp, horizontal: 15.sp),
+                //                           child: Column(
+                //                             crossAxisAlignment:
+                //                                 CrossAxisAlignment.start,
+                //                             children: [
+                //                               Comman_Text(
+                //                                 text: Pageview[index]['title'],
+                //                                 color: Colors.white,
+                //                                 fontWeight: FontWeight.w400,
+                //                                 fontSize: 20.sp,
+                //                               ),
+                //                               SizedBox(
+                //                                 height: 5.sp,
+                //                               ),
+                //                               Comman_Text(
+                //                                 text: Pageview[index]['subtitile'],
+                //                                 color: Colors.white,
+                //                                 fontWeight: FontWeight.w400,
+                //                                 fontSize: 18.sp,
+                //                               )
+                //                             ],
+                //                           ),
+                //                         ),
+                //                         width: double.infinity,
+                //                         color: Colors.red,
+                //                         BorderRadius: BorderRadius.circular(20),
+                //                         image: DecorationImage(
+                //                           fit: BoxFit.cover,
+                //                           image: AssetImage(
+                //                             Pageview[index]['image'],
+                //                           ),
+                //                         ),
+                //                       ),
+                //                     );
+                //                   },
+                //                 ),
+                //                 Positioned(
+                //                   bottom: 15,
+                //                   right: 0,
+                //                   left: 0,
+                //                   child: Row(
+                //                       mainAxisAlignment: MainAxisAlignment.center,
+                //                       children: List.generate(
+                //                         3,
+                //                         (index) => Padding(
+                //                           padding:
+                //                               EdgeInsets.symmetric(horizontal: 1.sp),
+                //                           child: CircleAvatar(
+                //                             radius: 5,
+                //                             backgroundColor:
+                //                                 controller.onchange == index
+                //                                     ? Colors.green
+                //                                     : Colors.white,
+                //                           ),
+                //                         ),
+                //                       )),
+                //                 ),
+                //               ],
+                //             ),
+                //           ],
+                //         );
+                //       },
+                //     ),
+                //   ],
+                // ),
+                // StreamBuilder(
+                //   stream: FirebaseFirestore.instance
+                //       .collection("user")
+                //       .doc(FirebaseAuth.instance.currentUser!.uid)
+                //       .collection('Order')
+                //       .where("sellerid",
+                //           isEqualTo: "${FirebaseAuth.instance.currentUser!.uid}")
+                //       .snapshots(),
+                //   builder: (BuildContext context,
+                //       AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
+                //     if (snapshot.hasData) {
+                //       return SizedBox(
+                //         height: 400.sp,
+                //         child: ListView.builder(
+                //           itemCount: snapshot.data?.docs.length,
+                //           itemBuilder: (context, index) {
+                //             var data = snapshot.data!.docs[index];
+                //             //print("numberofoder${snapshot.data?.docs.length}");
+                //             return Comman_Container(
+                //               margin: EdgeInsets.only(right: 10, bottom: 10),
+                //               height: 150.sp,
+                //               width: 150.sp,
+                //               child: Image.network(data['image']),
+                //             );
+                //           },
+                //         ),
+                //       );
+                //     } else {
+                //       return Center(child: CircularProgressIndicator());
+                //     }
+                //   },
+                // ),
+                StreamBuilder(
+                  stream: FirebaseFirestore.instance
+                      .collection("Product")
+                      .where("seller_id",
+                          isEqualTo:
+                              "${FirebaseAuth.instance.currentUser!.uid}")
+                      .snapshots(),
+                  builder: (BuildContext context,
+                      AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>>
+                          snapshot) {
+                    if (!snapshot.hasData) {
+                      return Center(child: CircularProgressIndicator());
+                    }
+                    return snapshot.data!.docs.isNotEmpty
+                        ? Expanded(
+                            child: ListView.builder(
+                              itemCount: snapshot.data?.docs.length,
+                              itemBuilder: (context, index) {
+                                var data = snapshot.data!.docs[index];
+                                //print("numberofoder${snapshot.data?.docs.length}");
+                                return Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 10.sp, vertical: 10.sp),
+                                  child: InkWell(
+                                    onTap: () {
+                                      Get.to(
+                                        ProductDetilsScreen(
+                                          image: data['image'],
+                                          category: data["product_catagory"],
+                                          details: data["product_details"],
+                                          name: data["product_name"],
+                                          price: data["product_price"],
+                                          stock: data["product_stock"],
+                                        ),
+                                      );
+                                    },
+                                    child: Card(
+                                      elevation: 5,
+                                      color: Colors.grey.shade200,
+                                      child: Comman_Container(
+                                        height: 140.sp,
+                                        width: 120.sp,
+                                        child: Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                  vertical: 10.sp,
+                                                  horizontal: 10.sp),
+                                              child: Comman_Container(
+                                                height: 140.sp,
+                                                width: 80.sp,
+                                                BorderRadius:
+                                                    BorderRadius.circular(5.sp),
+                                                image: DecorationImage(
+                                                  image: NetworkImage(
+                                                      data["image"]),
+                                                  fit: BoxFit.cover,
                                                 ),
                                               ),
-                                              Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  SizedBox(
-                                                    height: 10.sp,
-                                                  ),
-                                                  Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      Comman_Text(
-                                                          text: "Product Name:",
-                                                          color: Vx.black,
-                                                          fontSize: 12.sp,
-                                                          fontWeight:
-                                                              FontWeight.bold),
-                                                      Comman_Text(
-                                                        text:
-                                                            "${data["product_name"]}",
-                                                        color: grey,
-                                                        fontSize: 12.sp,
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      Comman_Text(
-                                                        text:
-                                                            "Product Categaroy:",
+                                            ),
+                                            Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                SizedBox(
+                                                  height: 10.sp,
+                                                ),
+                                                Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Comman_Text(
+                                                        text: "Product Name:",
                                                         color: Vx.black,
                                                         fontSize: 12.sp,
+                                                        fontFamily: "JB1",
                                                         fontWeight:
-                                                            FontWeight.bold,
-                                                      ),
-                                                      Comman_Text(
-                                                        text:
-                                                            "${data["product_catagory"]}",
-                                                        color: grey,
-                                                        fontSize: 12.sp,
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      Comman_Text(
-                                                        text: "Product Price:",
-                                                        color: Vx.black,
-                                                        fontSize: 12.sp,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                      ),
-                                                      Comman_Text(
-                                                        text:
-                                                            "₹${data["product_price"]}",
-                                                        color: red,
-                                                        fontSize: 12.sp,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ],
-                                              ),
-                                            ],
-                                          ),
+                                                            FontWeight.bold),
+                                                    Comman_Text(
+                                                      text:
+                                                          "${data["product_name"]}",
+                                                      color: grey,
+                                                      fontSize: 12.sp,
+                                                      fontFamily: "JM1",
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                    ),
+                                                  ],
+                                                ),
+                                                Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Comman_Text(
+                                                      text:
+                                                          "Product Categaroy:",
+                                                      color: Vx.black,
+                                                      fontSize: 12.sp,
+                                                      fontFamily: "JB1",
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                    Comman_Text(
+                                                      text:
+                                                          "${data["product_catagory"]}",
+                                                      color: grey,
+                                                      fontSize: 12.sp,
+                                                      fontFamily: "JM1",
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                    ),
+                                                  ],
+                                                ),
+                                                Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Comman_Text(
+                                                      text: "Product Price:",
+                                                      color: Vx.black,
+                                                      fontSize: 12.sp,
+                                                      fontFamily: "JB1",
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                    Comman_Text(
+                                                      text:
+                                                          "₹${data["product_price"]}",
+                                                      color: red,
+                                                      fontSize: 12.sp,
+                                                      fontFamily: "JM1",
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ],
                                         ),
                                       ),
                                     ),
-                                  );
-                                },
-                              ),
-                            )
-                          : Expanded(
-                              child: Image.asset(
-                                "assets/images/EcommercePorductAddi.png",
-                                height: Get.height * 0.35,
-                                width: Get.width,
-                              ),
-                            );
-                    },
-                  ),
-                ],
-              ),
+                                  ),
+                                );
+                              },
+                            ),
+                          )
+                        : Expanded(
+                            child: Image.asset(
+                              "assets/images/EcommercePorductAddi.png",
+                              height: Get.height * 0.35,
+                              width: Get.width,
+                            ),
+                          );
+                  },
+                ),
+              ],
             ),
           ),
         ),
-      ),
-    );
-  }
-
-  Future<bool> onBackButtonPressed() async {
-    return await showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Comman_Text(text: "Really?", fontWeight: FontWeight.bold),
-        content: Comman_Text(
-          text: "Do you want to close app??",
-          fontWeight: FontWeight.w400,
-        ),
-        actions: [
-          IconButton(
-              onPressed: () {
-                Navigator.of(context).pop(false);
-              },
-              icon: Icon(
-                Icons.close,
-                color: Colors.red,
-              )),
-          IconButton(
-              onPressed: () {
-                Navigator.of(context).pop(true);
-              },
-              icon: Icon(
-                Icons.done,
-                color: green,
-              )),
-        ],
       ),
     );
   }

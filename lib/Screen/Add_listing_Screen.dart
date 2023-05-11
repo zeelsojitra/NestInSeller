@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fashion_seller_hub/Screen/fancy_drawer.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -10,9 +9,9 @@ import 'package:image_picker/image_picker.dart';
 import 'package:sizer/sizer.dart';
 import '../Common_screen/Comman_Container.dart';
 import '../Common_screen/Comman_TeextFiled.dart';
-import '../Common_screen/loding.dart';
 import '../getx/controller.dart';
 import '../helper/variable.dart';
+import 'fancy_drawer.dart';
 import 'homeScreen.dart';
 
 class Add_Product extends StatefulWidget {
@@ -122,7 +121,7 @@ class _Add_ProductState extends State<Add_Product> {
   final product_categories = TextEditingController();
   final product_stock = TextEditingController();
   final product_details = TextEditingController();
-  final gloablekey = GlobalKey<FormState>();
+  final Formkey = GlobalKey<FormState>();
   ImagePicker picker = ImagePicker();
   PickImage(ImageSource imageSource) async {
     final file = await picker.pickImage(source: imageSource);
@@ -157,7 +156,7 @@ class _Add_ProductState extends State<Add_Product> {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Form(
-          key: gloablekey,
+          key: Formkey,
           child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -185,9 +184,6 @@ class _Add_ProductState extends State<Add_Product> {
                   height: 20.sp,
                 ),
                 Comman_TexxtFiled(
-                  onChanged: (value) {
-                    gloablekey.currentState!.validate();
-                  },
                   controller: product_name,
                   keyboardType: TextInputType.text,
                   validator: (p0) {
@@ -208,9 +204,6 @@ class _Add_ProductState extends State<Add_Product> {
                   height: 15.sp,
                 ),
                 Comman_TexxtFiled(
-                  onChanged: (value) {
-                    gloablekey.currentState!.validate();
-                  },
                   maxLength: 200,
                   controller: product_details,
                   validator: (p0) {
@@ -247,9 +240,7 @@ class _Add_ProductState extends State<Add_Product> {
                         Catagory.length,
                         (index) => DropdownMenuItem(
                           value: Catagory[index],
-                          child: Text(Catagory[index],
-                              style:
-                                  TextStyle(fontFamily: "JM1", color: black)),
+                          child: Text(Catagory[index]),
                         ),
                       ),
                     ),
@@ -287,9 +278,6 @@ class _Add_ProductState extends State<Add_Product> {
                   height: 10.sp,
                 ),
                 Comman_TexxtFiled(
-                  onChanged: (value) {
-                    gloablekey.currentState!.validate();
-                  },
                   controller: product_price,
                   validator: (p0) {
                     if (p0!.isEmpty) {
@@ -308,9 +296,6 @@ class _Add_ProductState extends State<Add_Product> {
                   height: 15.sp,
                 ),
                 Comman_TexxtFiled(
-                  onChanged: (value) {
-                    gloablekey.currentState!.validate();
-                  },
                   controller: product_stock,
                   validator: (p0) {
                     if (p0!.isEmpty) {
@@ -326,21 +311,20 @@ class _Add_ProductState extends State<Add_Product> {
                   hintStyle: TextStyle(fontFamily: "JM1"),
                 ),
                 SizedBox(
-                  height: 20.sp,
+                  height: 10.sp,
+                ),
+                SizedBox(
+                  height: 10.sp,
                 ),
                 GestureDetector(
                   onTap: () async {
-                    if (gloablekey.currentState!.validate()) {
-                      showDialog(
-                        context: context,
-                        builder: (context) {
-                          return LodingDiloge(
-                            message: "",
-                          );
-                        },
-                      );
+                    if (Formkey.currentState!.validate()) {
                       final imageUrlseller = await uplodeImage();
-
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => HomeScreen1(),
+                          ));
                       DocumentReference docRef = FirebaseFirestore.instance
                           .collection("Product")
                           .doc();
@@ -359,8 +343,6 @@ class _Add_ProductState extends State<Add_Product> {
                           .catchError((error) {
                             print("an error occured${error}");
                           });
-                      Get.back();
-                      Get.to(HomeScreen1());
                     }
                   },
                   child: Container(
@@ -375,7 +357,6 @@ class _Add_ProductState extends State<Add_Product> {
                       "Add",
                       style: TextStyle(
                           color: Colors.black,
-                          fontFamily: "JM1",
                           fontWeight: FontWeight.bold,
                           fontSize: 16.sp),
                     )),
