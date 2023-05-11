@@ -210,7 +210,8 @@ class _Order_screenState extends State<Order_screen>
                     return Center(child: CircularProgressIndicator());
                   }
                   return snapshot.data!.docs.isNotEmpty
-                      ? Expanded(
+                      ? SizedBox(
+                          height: 580.sp,
                           child: ListView.builder(
                             itemCount: snapshot.data!.docs.length,
                             itemBuilder: (context, index) {
