@@ -9,6 +9,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:sizer/sizer.dart';
 import '../Common_screen/Comman_Container.dart';
 import '../Common_screen/Comman_TeextFiled.dart';
+import '../Common_screen/loding.dart';
 import '../getx/controller.dart';
 import '../helper/variable.dart';
 import 'fancy_drawer.dart';
@@ -319,6 +320,14 @@ class _Add_ProductState extends State<Add_Product> {
                 GestureDetector(
                   onTap: () async {
                     if (Formkey.currentState!.validate()) {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return LodingDiloge(
+                            message: "",
+                          );
+                        },
+                      );
                       final imageUrlseller = await uplodeImage();
                       Navigator.push(
                           context,
@@ -343,6 +352,12 @@ class _Add_ProductState extends State<Add_Product> {
                           .catchError((error) {
                             print("an error occured${error}");
                           });
+                      product_name.clear();
+                      product_details.clear();
+                      product_price.clear();
+                      product_stock.clear();
+                      Get.back();
+                      Get.to(HomeScreen1());
                     }
                   },
                   child: Container(

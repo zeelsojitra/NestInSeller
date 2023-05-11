@@ -5,8 +5,6 @@ import 'package:fashion_seller_hub/Screen/Help_screen.dart';
 import 'package:fashion_seller_hub/Screen/Order_Screen.dart';
 import 'package:fashion_seller_hub/Screen/Payment_Screen.dart';
 import 'package:fashion_seller_hub/Screen/Send_feedback.dart';
-import 'package:fashion_seller_hub/Screen/homeScreen.dart';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -94,30 +92,26 @@ class _HomeScreen1State extends State<HomeScreen1>
                             LinearGradient(colors: [DarkGreen2, LightGreen]),
                         borderRadius: BorderRadius.circular(17)),
                     accountName: Comman_Text(
-                      text: "",
-                      // text: sharedPreferences!.getString("profile_name"),
+                      text: sharedPreferences!.getString("profile_name"),
                       color: white,
                       fontSize: 16.sp,
                     ),
                     accountEmail: Comman_Text(
-                      // text:
-                      //     "sharedPreferences!.getString(" "profile_email" "),",
-                      text: "",
+                      text: sharedPreferences!.getString("profile_email"),
                       color: white,
                       fontSize: 12.sp,
                     ),
                     currentAccountPicture: CircleAvatar(
                       backgroundColor: Colors.white,
                       child: Comman_Text(
-                        color: DarkGreen2,
-                        //fontFamily: "JS1",
-                        fontWeight: FontWeight.bold,
-                        fontSize: Get.height * 0.03,
-                        // text:
-                        //     "${sharedPreferences!.getString("profile_name")}"
-                        //         .split("")
-                        //         .first),
-                      ),
+                          color: DarkGreen2,
+                          //fontFamily: "JS1",
+                          fontWeight: FontWeight.bold,
+                          fontSize: Get.height * 0.03,
+                          text:
+                              "${sharedPreferences!.getString("profile_name")}"
+                                  .split("")
+                                  .first),
                     ),
                   ),
                 ),
@@ -170,11 +164,10 @@ class _HomeScreen1State extends State<HomeScreen1>
                     );
                     await EmailLauncher.launch(email);
                   }
-                  if (index == 5) {}
-                  if (index == 6) {
+                  if (index == 5) {
                     Get.to(Help_Screen());
                   }
-                  if (index == 7) {
+                  if (index == 6) {
                     showDialog(
                         barrierDismissible: false,
                         context: context,
@@ -515,7 +508,7 @@ class _HomeScreen1State extends State<HomeScreen1>
                                                         text: "Product Name:",
                                                         color: Vx.black,
                                                         fontSize: 12.sp,
-                                                        fontFamily: "JB1",
+                                                        //fontFamily: "JB1",
                                                         fontWeight:
                                                             FontWeight.bold),
                                                     Comman_Text(
@@ -523,7 +516,7 @@ class _HomeScreen1State extends State<HomeScreen1>
                                                           "${data["product_name"]}",
                                                       color: grey,
                                                       fontSize: 12.sp,
-                                                      fontFamily: "JM1",
+                                                      //fontFamily: "JM1",
                                                       fontWeight:
                                                           FontWeight.w600,
                                                     ),
@@ -538,7 +531,7 @@ class _HomeScreen1State extends State<HomeScreen1>
                                                           "Product Categaroy:",
                                                       color: Vx.black,
                                                       fontSize: 12.sp,
-                                                      fontFamily: "JB1",
+                                                      //fontFamily: "JB1",
                                                       fontWeight:
                                                           FontWeight.bold,
                                                     ),
@@ -547,7 +540,7 @@ class _HomeScreen1State extends State<HomeScreen1>
                                                           "${data["product_catagory"]}",
                                                       color: grey,
                                                       fontSize: 12.sp,
-                                                      fontFamily: "JM1",
+                                                      //fontFamily: "JM1",
                                                       fontWeight:
                                                           FontWeight.w600,
                                                     ),
@@ -561,7 +554,7 @@ class _HomeScreen1State extends State<HomeScreen1>
                                                       text: "Product Price:",
                                                       color: Vx.black,
                                                       fontSize: 12.sp,
-                                                      fontFamily: "JB1",
+                                                      //fontFamily: "JB1",
                                                       fontWeight:
                                                           FontWeight.bold,
                                                     ),
@@ -570,7 +563,7 @@ class _HomeScreen1State extends State<HomeScreen1>
                                                           "₹${data["product_price"]}",
                                                       color: red,
                                                       fontSize: 12.sp,
-                                                      fontFamily: "JM1",
+                                                      //fontFamily: "JM1",
                                                       fontWeight:
                                                           FontWeight.bold,
                                                     ),
